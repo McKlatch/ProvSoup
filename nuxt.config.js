@@ -56,7 +56,7 @@ export default {
   ** Customize the base url
   */
   router: {
-    base: '/provsoup/' //this is whatever the project is named
+    base: '/' //this is whatever the project is named
   },
 
   build: {
