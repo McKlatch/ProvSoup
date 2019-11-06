@@ -44,6 +44,21 @@ export default {
   /*
   ** Build configuration
   */
+ 
+  /*
+   ** Customize the generated output folder
+   */
+  generate: {
+    dir: 'public'
+  },
+  
+  /*
+  ** Customize the base url
+  */
+  router: {
+    base: '/provsoup/' //this is whatever the project is named
+  },
+
   build: {
     /*
     ** You can extend webpack config here

@@ -1,0 +1,17 @@
+image: node
+
+before_script:
+  - yarn install
+
+cache:
+  paths:
+    - node_modules/
+
+pages:
+  script:
+    - yarn generate --fail-on-page-error
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
