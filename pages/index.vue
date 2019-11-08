@@ -1,22 +1,22 @@
 <template>
-  <div class="container">
+  <div class="container mx-auto px-4 bg-gray-100">
     <div>
-      <logo />
-      <h1 class="title">
+      <logo class="block mx-auto w-64 h-64 p-3 pt-16" />
+      <h1 class="font-display block font-bold text-6xl text-gray-800 text-center">
         Proverbial Soup
       </h1>
-      <h2 class="subtitle">
+      <h2 class="font-body block text-2xl text-pink-600 text-center">
         Beneficial sayings worth repeating and sharing in real life (or online)
       </h2>
-      <div class="social">
+      <div class="block pt-6 pb-16 text-center">
         <a
           v-for="social in socialLinks" 
           v-bind:key="social.id"
           :href="`${social.url}`"
           target="_blank"
-          style="display:inline-block;"
+          class="inline-block"
           >
-          <img :src="`${social.image}`"  :alt="`${social.title }`" style="padding: 10px;" />
+          <img :src="`${social.image}`"  :alt="`${social.title }`" class="w-20 h-20 p-3" />
         </a>
       </div>
 
@@ -37,13 +37,13 @@ export default {
         {
           id: 0,
           title: 'Twitter',
-          image: require(`~/assets/img/twitter.png`),
+          image: require(`~/assets/img/twitter.svg`),
           url: 'https://twitter.com/provsoup'
         },
         {
           id: 1,
           title: 'Instagram',
-          image: require(`~/assets/img/instagram.png`),
+          image: require(`~/assets/img/instagram.svg`),
           url: 'https://www.instagram.com/provsoup'
         }
       ]
@@ -58,34 +58,5 @@ export default {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
-.title {
-  font-family: 'Merriweather', serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-family: 'Muli', sans-serif;
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>
