@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto px-4 bg-gray-100">
+  <div class="container mx-auto w-screen h-screen bg-gray-100">
     <div>
       <logo class="block mx-auto w-64 h-64 p-3 pt-16" />
       <h1 class="font-display block font-bold text-6xl text-gray-800 text-center">
@@ -16,7 +16,7 @@
           target="_blank"
           class="inline-block"
           >
-          <img :src="`${social.image}`"  :alt="`${social.title }`" class="w-20 h-20 p-3" />
+          <img :src="`${social.image}`"  :alt="`${social.title }`" class="w-12 h-12 p-1" />
         </a>
       </div>
 
