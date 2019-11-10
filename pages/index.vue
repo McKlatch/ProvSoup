@@ -30,6 +30,7 @@ export default {
   },
   data () {
     return {
+      ip: '',
       socialLinks: [
         {
           id: 0,
@@ -45,6 +46,15 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    async fetchSomething() {
+      const ip = await this.$axios.$get('http://icanhazip.com')
+      this.ip = ip
+    }
+  },
+  created () {
+    this.fetchSomething()
   }
 }
 </script>
