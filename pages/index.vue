@@ -30,7 +30,7 @@ export default {
   },
   data () {
     return {
-      ip: '',
+      inQuotes: [],
       socialLinks: [
         {
           id: 0,
@@ -47,10 +47,17 @@ export default {
       ]
     }
   },
+  computed: {
+    quotes () {
+      return this.inQuotes.filter(function(index) {
+        return index.label;
+      });
+    }
+  },
   methods: {
     async fetchSomething() {
-      const ip = await this.$axios.$get('http://icanhazip.com')
-      this.ip = ip
+      const inQuotes = await this.$axios.$get('https://api.sheety.co/28999f15-3e1a-47f2-83e2-619d2b8e1287')
+      this.inQuotes = inQuotes
     }
   },
   created () {
