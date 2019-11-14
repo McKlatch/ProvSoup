@@ -1,15 +1,16 @@
 <template>
   <div>
-    <logo class="block mx-auto w-32 h-32 p-3 pt-16" />
-    <h1 class="font-display block font-bold text-4xl text-gray-800 text-center">
-      Proverbial Soup
-    </h1>
-    <h2 class="font-body block text-lg text-pink-600 text-center">
-      Beneficial sayings worth repeating and sharing in real life (or online)
-    </h2>
-    <p class="font-body block text-4xl text-pink-600 text-center pt-16">"{{quote.proverb}}"</p>
-    <small class="font-body block text-2xl text-gray-800 text-center">{{quote.origin}}</small>
-    <div class="block pt-16 pb-16 text-center">
+    <div class="block pt-4 text-center">
+      <logo class="inline-block w-10" />
+      <h1 class="inline-block font-display font-bold text-lg text-gray-800">
+        Proverbial Soup
+      </h1>
+    </div>
+      <img
+        :src="require(`~/assets/img/quotes/${quote.label}.png`)"
+        :alt="`&quot;${quote.proverb}&quot; - ${quote.origin}`"
+        class="block mx-auto md:w-1/2 lg:3/4 m-4 shadow-2xl font-body block text-2xl text-gray-800 text-center">
+    <div class="block text-center">
       <a
         v-for="social in socialLinks" 
         v-bind:key="social.id"
