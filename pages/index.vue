@@ -1,13 +1,15 @@
 <template>
   <div>
-    <logo class="block mx-auto w-64 h-64 p-3 pt-16" />
-    <h1 class="font-display block font-bold text-6xl text-gray-800 text-center">
+    <logo class="block mx-auto w-32 h-32 p-3 pt-16" />
+    <h1 class="font-display block font-bold text-4xl text-gray-800 text-center">
       Proverbial Soup
     </h1>
-    <h2 class="font-body block text-2xl text-pink-600 text-center">
+    <h2 class="font-body block text-lg text-pink-600 text-center">
       Beneficial sayings worth repeating and sharing in real life (or online)
     </h2>
-    <div class="block pt-6 pb-16 text-center">
+    <p class="font-body block text-4xl text-pink-600 text-center pt-16">"{{quote.proverb}}"</p>
+    <small class="font-body block text-2xl text-gray-800 text-center">{{quote.origin}}</small>
+    <div class="block pt-16 pb-16 text-center">
       <a
         v-for="social in socialLinks" 
         v-bind:key="social.id"
@@ -31,6 +33,12 @@ export default {
   data () {
     return {
       inQuotes: [],
+      quote: {
+        label: 'NotLoaded',
+        origin: 'ProvSoup ',
+        proverb: 'Loading...',
+        source: 'https://proverbialsoup.com/'
+      },
       socialLinks: [
         {
           id: 0,
@@ -58,6 +66,12 @@ export default {
     async fetchSomething() {
       const inQuotes = await this.$axios.$get('https://api.sheety.co/28999f15-3e1a-47f2-83e2-619d2b8e1287')
       this.inQuotes = inQuotes
+      this.genQuote()
+    },
+    genQuote () {
+      const rand = Math.floor(Math.random() * this.quotes.length)
+      const selected = this.quotes[rand]
+      this.quote = selected !== this.quote ? selected : this.quotes[0]
     }
   },
   created () {
