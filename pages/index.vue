@@ -7,7 +7,7 @@
       </h1>
     </div>
       <img
-        :src="require(`~/assets/img/quotes/${quote.label}.png`)"
+        :src="displayImgURL"
         :alt="`&quot;${quote.proverb}&quot; - ${quote.origin}`"
         class="block mx-auto md:w-1/2 lg:3/4 m-4 shadow-2xl font-body block text-2xl text-gray-800 text-center">
     <div class="block text-center">
@@ -61,6 +61,12 @@ export default {
       return this.inQuotes.filter(function(index) {
         return index.label;
       });
+    },
+    displayImgURL () {
+      if (this.quote.label === "NotLoaded") {
+        return require(`~/assets/img/quotes/${this.quote.label}.gif`)
+      }
+      return require(`~/assets/img/quotes/${this.quote.label}.png`)
     }
   },
   methods: {
