@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <div class="block pt-4 text-center">
-      <logo class="inline-block w-10" />
-    </div>
-    <nuxt />
-    <social class="block text-center" />
+  <div class="flex flex-col">
+    <logo class="absolute top-0 left-0 m-4 w-10" />
+    <nuxt class="m-12" />
+    <social class="absolute bottom-0 right-0 mr-2" />
   </div>
 </template>
 
@@ -20,7 +18,7 @@ export default {
   head() {
     return {
       bodyAttrs: {
-        class: 'container mx-auto w-screen h-screen bg-gray-100'
+        class: 'w-screen h-screen bg-gray-100'
       }
     }
   }

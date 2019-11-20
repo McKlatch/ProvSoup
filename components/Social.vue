@@ -1,7 +1,7 @@
 <template>
   <div>
   <a v-for="social in socialLinks" v-bind:key="social.id" :href="`${social.url}`" target="_blank" class="inline-block">
-    <img :src="`${social.image}`" :alt="`${social.title }`" class="w-12 h-12 p-1" />
+    <img :src="`${social.image}`" :alt="`${social.title }`" class="w-10 h-10 m-1" />
   </a>
   </div>
 </template>
