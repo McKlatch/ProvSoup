@@ -11,6 +11,11 @@
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: `Proverbial Soup · ${this.quote.proverb}`
+    }
+  },
   data() {
     return {
       inQuotes: [],
