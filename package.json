@@ -1,8 +1,8 @@
 {
   "name": "provsoup",
   "version": "1.0.0",
-  "description": "My proverbial nuxt.js project",
-  "author": "McKlatch",
+  "description": "Beneficial sayings worth repeating and sharing in real life (or Online). Quotes curated by @mcklatch.",
+  "author": "David McClatchey",
   "private": true,
   "scripts": {
     "dev": "nuxt",
