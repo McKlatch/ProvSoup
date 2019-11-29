@@ -1,15 +1,34 @@
 <template>
-  <div class="absolute inset-0 flex items-center justify-center">
-    <div class="max-w-sm rounded overflow-hidden">
-      <div>{{$route.params.label}}</div>
-    </div>
-  </div>
+  <card :label="quote.label" :origin="quote.origin" :proverb="quote.proverb" :source="quote.source" />
 </template>
 <script>
-  export default {
+import Card from '~/components/Card/Card'
+
+export default {
   validate ({ params }) {
     // Must be a number
     return /^[A-Z].*/.test(params.label)
+  },
+  head() {
+    return {
+      title: `Proverbial Soup · ${this.quote.proverb}`
+    }
+  },
+  components: {
+    Card
+  },
+  data() {
+    return {
+      quote: {
+        label: 'NotLoaded',
+        origin: 'ProvSoup ',
+        proverb: 'Loading...',
+        source: 'https://proverbialsoup.com/'
+      }
+    }
+  },
+  created() {
+    this.quote = this.$store.getters.getQuoteByLabel(this.$route.params.label)
   }
 }
 </script>
