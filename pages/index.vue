@@ -24,9 +24,10 @@ export default {
     }
   },
   created() {
-    // this.quote = this.$store.getters.randomQuote
+    const rdyQuotes = this.$store.getters.readyQuotes
+    const rand = Math.floor(Math.random() * rdyQuotes.length)
     this.$router.push({
-      path: `/${this.$store.getters.randomQuote.label}`
+      path: `/${rdyQuotes[rand].label}`
     })
   }
 }

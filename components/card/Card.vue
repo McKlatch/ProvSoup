@@ -44,8 +44,10 @@ export default {
       return require(`~/assets/img/quotes/${this.label}.png`)
     },
     randomQuoteLabel() {
-      return this.$store.getters.randomQuote.label
+      const rdyQuotes = this.$store.getters.readyQuotes
+      const rand = Math.floor(Math.random() * rdyQuotes.length)
+      return rdyQuotes[rand].label
     }
-  },
+  }
 }
 </script>
