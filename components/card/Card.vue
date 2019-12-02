@@ -45,8 +45,11 @@ export default {
     },
     randomQuoteLabel() {
       const rdyQuotes = this.$store.getters.readyQuotes
-      const rand = Math.floor(Math.random() * rdyQuotes.length)
-      return rdyQuotes[rand].label
+      const filteredQuotes = rdyQuotes.filter(index => {
+        return index.label !== this.label
+      })
+      const rand = Math.floor(Math.random() * filteredQuotes.length)
+      return filteredQuotes[rand].label
     }
   }
 }
