@@ -2,7 +2,7 @@
   <card :label="quote.label" :origin="quote.origin" :proverb="quote.proverb" :source="quote.source" />
 </template>
 <script>
-import Card from '~/components/Card/Card'
+import Card from '~/components/Card/Card.vue'
 
 export default {
   head() {
