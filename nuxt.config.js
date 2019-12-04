@@ -57,7 +57,42 @@ export default {
    ** Customize the generated output folder
    */
   generate: {
-    dir: 'public'
+    dir: 'public',
+    routes: [
+      '/ArguingWithAFool',
+      '/CanShouldComfortableGood',
+      '/CantGetItWrong',
+      '/ChopDownATree',
+      '/CriticismTakeAdviceFrom',
+      '/DistressedExternalPainItself',
+      '/DontChooseOurFeelings',
+      '/DontHeroinLoveIt',
+      '/DoRightPeopleNotice',
+      '/DrinkPoisonOtherDies',
+      '/EasierFoolConvinceThem',
+      '/files_and_folders.txt',
+      '/FirstStepsPraiseFirst',
+      '/GentleAnswerHarshWords',
+      '/HealHurtBleedPeople',
+      '/IntelligenceCapacityMistakeBefore',
+      '/JudgeIntentionsJudgeBehaviour',
+      '/LearnFromMistakesShort',
+      '/LivingTellTheirStory',
+      '/MeasureTwiceCutOnce',
+      '/NoMistakesStillLose',
+      '/NotLoaded.gif',
+      '/NotLoaded',
+      '/PlanningWarsGeneralsTent',
+      '/ProblemFixNoWorry',
+      '/RaiseKidsSpoilKids',
+      '/SweatPeaceBleedWar',
+      '/TrueMasterEternalStudent',
+      '/TwoLivesOnlyOne',
+      '/ValorStabilityCourageSoul',
+      '/WeGaveOurToday',
+      '/WeSufferFromImagination',
+      '/WorldChangeExampleOpinion'
+    ]
   },
   
   /*
