@@ -1,7 +1,10 @@
 <template>
   <div class="inline-flex float-right">
+    <button @click="copyProverb" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-bl" title="Copy Proverb">
+      📋
+    </button>
     <a :href="discoverLink">
-      <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-bl" title="More about this proverb">
+      <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2" title="More about this proverb">
         📖
       </button>
     </a>
@@ -64,6 +67,9 @@
   methods: {
     copyLink() {
       navigator.clipboard.writeText(`https://proverbialsoup.com/${this.label}`)
+    },
+    copyProverb() {
+      navigator.clipboard.writeText(`"${this.proverb}" - ${this.origin}`)
     },
     validURL(i) {
       const pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
