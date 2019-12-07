@@ -1,9 +1,19 @@
 <template>
-  <nuxt-link :to="'/' + randomQuoteLabel">
-      <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 float-right rounded-b shadow">
+  <div class="inline-flex float-right">
+    <a :href="discoverLink">
+      <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-bl" title="More about this proverb">
+        📖
+      </button>
+    </a>
+    <button @click="copyLink" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2" title="Copy Link">
+      🔗
+    </button>
+    <nuxt-link :to="'/' + randomQuoteLabel">
+      <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-br" title="Random Proverb">
         🔀
       </button>
-  </nuxt-link>
+    </nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -38,6 +48,33 @@
       })
       const rand = Math.floor(Math.random() * filteredQuotes.length)
       return filteredQuotes[rand].label
+    },
+    discoverLink() {
+      if (this.validURL(this.source)) return this.source
+      // if (this.validBibleRef(this.origin)) return `http://www.biblegateway.com/passage/?search=${this.origin}&version=WEB`
+      let queryText = ''
+      if (!this.origin.toLowerCase().includes("unknown")) queryText += `${this.origin} `
+      if (this.source && this.source !== this.origin) {
+        if (!this.source.toLowerCase().includes("unknown")) queryText += `${this.source} `
+      }
+      queryText += this.proverb
+      return `https://ecosia.org/search?q=${queryText}`
+    }
+  },
+  methods: {
+    copyLink() {
+      navigator.clipboard.writeText(`https://proverbialsoup.com/${this.label}`)
+    },
+    validURL(i) {
+      const pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*') // port and path
+      return pattern.test(i)
+    },
+    validBibleRef(i) {
+      const pattern = new RegExp('([\d ]*[a-zA-Z]+( \d*:\d*)?)(( - )| )?(((\d* )?[a-zA-Z]+ )?\d*([:-]+\d*)?)') // returns everything :(
+      return pattern.test(i)
     }
   }
 }
