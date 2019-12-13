@@ -1,5 +1,5 @@
 <template>
-  <img class="w-full rounded-tl rounded-tr rounded-bl shadow" :src="displayImgURL" :alt="`&quot;${proverb}&quot; - ${origin}`">
+  <img class="w-full rounded-tl rounded-tr shadow" :src="displayImgURL" :alt="`&quot;${proverb}&quot; - ${origin}`">
 </template>
 
 <script>
