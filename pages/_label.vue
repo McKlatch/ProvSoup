@@ -20,20 +20,20 @@ export default {
         ` },
         // og data
         { hid: 'og:title', property: 'og:title', content: this.quote.proverb },
-        { hid: 'og:url', property: 'og:url', content: `http://www.proverbialsoup.com/${this.quote.label}/` },
+        { hid: 'og:url', property: 'og:url', content: `https://proverbialsoup.com/${this.quote.label}/` },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         { hid: 'og:description', property: 'og:description', content: `
           ${this.quote.origin} quote on Proverbial Soup · Beneficial sayings worth repeating and sharing in real life
           (or Online). Timeless proverbs, captivating imagery, curated.
         ` },
-        { hid: 'og:image', property: 'og:image', content: 'http://www.proverbialsoup.com' + require(`~/assets/img/quotes/${this.quote.label}.png`) },
+        { hid: 'og:image', property: 'og:image', content: 'https://proverbialsoup.com' + require(`~/assets/img/quotes/${this.quote.label}.png`) },
         // twitter card
         { hid: 'twitter:card', name: 'twitter:card', content: 'photo' },
         { hid: 'twitter:title', name: 'twitter:title', content: `
-          ${this.quote.origin} quote on Proverbial Soup` },
-        { hid: 'twitter:url', name: 'twitter:url', content: `http://www.proverbialsoup.com/${this.quote.label}/` },
+          ${this.quote.origin} quote on @ProvSoup` },
+        { hid: 'twitter:url', name: 'twitter:url', content: `https://proverbialsoup.com/${this.quote.label}/` },
         { hid: 'twitter:description', name: 'twitter:description', content: `"${this.quote.proverb}" and other beneficial sayings worth repeating and sharing in real life (or Online). Timeless proverbs, captivating imagery, curated.` },
-        { hid: 'twitter:image', name: 'twitter:image', content: 'http://www.proverbialsoup.com' + require(`~/assets/img/quotes/${this.quote.label}.png`) },
+        { hid: 'twitter:image', name: 'twitter:image', content: 'https://proverbialsoup.com' + require(`~/assets/img/quotes/${this.quote.label}.png`) },
       ]
     }
   },
