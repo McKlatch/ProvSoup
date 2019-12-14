@@ -27,6 +27,9 @@ export default {
           (or Online). Timeless proverbs, captivating imagery, curated.
         ` },
         { hid: 'og:image', property: 'og:image', content: 'https://proverbialsoup.com' + require(`~/assets/img/quotes/${this.quote.label}.png`) },
+        { hid: 'og:image:width', property: 'og:image:width', content: '1080' },
+        { hid: 'og:image:height', property: 'og:image:height', content: '1080' },
+        { hid: 'og:image:alt', property: 'og:image:alt', content: this.quote.proverb },
         // twitter card
         { hid: 'twitter:card', name: 'twitter:card', content: 'photo' },
         { hid: 'twitter:title', name: 'twitter:title', content: `
