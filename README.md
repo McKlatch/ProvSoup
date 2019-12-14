@@ -1,6 +1,6 @@
 # provsoup
 
-> My proverbial nuxt.js project
+> Beneficial sayings worth repeating and sharing in real life (or Online). Quotes curated by David McClatchey.
 
 ## Build Setup
 

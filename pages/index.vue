@@ -7,7 +7,14 @@ import Card from '~/components/card/Card'
 export default {
   head() {
     return {
-      title: `Proverbial Soup · ${this.quote.proverb}`
+      title: `Proverbial Soup · ${this.quote.proverb}`,
+      meta: [
+        // standard meta
+        { hid: 'description', name: 'description', content: `
+          Proverbial Soup · Beneficial sayings worth repeating and sharing in real life
+          (or Online). Timeless quotes, captivating imagery, curated by David McClatchey.
+        ` }
+      ]
     }
   },
   components: {
