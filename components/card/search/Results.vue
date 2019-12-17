@@ -33,4 +33,7 @@ export default {
   .dropdown li:nth-child(odd) {
     background-color: #eeeeeeee;
   }
+  .dropdown li:hover {
+    background-color: #ffffff;
+  }
 </style>

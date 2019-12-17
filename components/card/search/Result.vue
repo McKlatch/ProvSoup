@@ -1,5 +1,5 @@
 <template>
-  <li @click="goTo(label)" class="p-1" style="cursor:pointer">
+  <li @click="goTo(label)" class="mx-1 p-1" style="cursor:pointer">
     <span class="name" v-html="showProverb"></span> <span class="text-gray-500 text-xs" v-html="showOrigin"></span>
   </li>
 </template>
