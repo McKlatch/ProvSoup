@@ -1,6 +1,6 @@
 <template>
-  <li class="bg-white p-1">
-    <nuxt-link :to="'/' + label"><span class="name" v-html="showProverb"></span> <span class="text-gray-500 text-xs" v-html="showOrigin"></span></nuxt-link>
+  <li @click="goTo(label)" class="p-1" style="cursor:pointer">
+    <span class="name" v-html="showProverb"></span> <span class="text-gray-500 text-xs" v-html="showOrigin"></span>
   </li>
 </template>
 
@@ -21,6 +21,13 @@ export default {
       type: String,
       required: true,
       default: '<span class="suggestHL">OriginError</span>'
+    }
+  },
+  methods: {
+    goTo(label) {
+      this.$router.push({
+        path: `/${label}`
+      })
     }
   }
 }

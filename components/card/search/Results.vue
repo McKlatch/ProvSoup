@@ -1,5 +1,5 @@
 <template>
-  <ul class="absolute max-w-sm">
+  <ul class="absolute max-w-sm dropdown leading-tight">
     <result-display v-for="result in results" :key="result.label" :label="result.label" :showProverb="result.showProverb" :showOrigin="result.showOrigin" />
   </ul>
 </template>
@@ -25,3 +25,12 @@ export default {
   }
 }
 </script>
+
+<style>
+  .dropdown li:nth-child(even) {
+    background-color: #ffffffee;
+  }
+  .dropdown li:nth-child(odd) {
+    background-color: #eeeeeeee;
+  }
+</style>

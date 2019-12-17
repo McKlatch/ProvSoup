@@ -35,7 +35,10 @@ export default {
   computed: {
     suggests() {
       const regex = new RegExp(this.searchValue, 'gi')
-      const matches = this.quotes.filter(quote => {
+      const filteredQuotes = this.quotes.filter(index => {
+        return index.label !== this.label
+      })
+      const matches = filteredQuotes.filter(quote => {
         return quote.proverb.match(regex) || quote.origin.match(regex)
       })
       let displaySuggests = []
