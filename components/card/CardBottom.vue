@@ -1,5 +1,5 @@
 <template>
-  <form class="w-full max-w-sm">
+  <div class="w-full max-w-sm">
   <div class="flex">
     <!-- Sharingbutton Facebook -->
 <a class="flex-auto" :href="`https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fproverbialsoup.com/${label}/`" target="_blank" rel="noopener" aria-label="">
@@ -86,7 +86,7 @@
       </button>
     </a>
   </div>
-</form>
+</div>
 </template>
 
 <script>
