@@ -1,6 +1,6 @@
 <template>
   <div>
-  <div class="flex items-center">
+  <div class="flex items-center bg-gray-100">
   <form @submit.prevent="toTopResult" class="w-full max-w-sm">
     <div class="flex-auto">
       <input autofocus v-model="searchValue" class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none" type="text" :placeholder="'🔎 ' + proverb" aria-label="Search" title="Search">
