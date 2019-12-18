@@ -14,6 +14,12 @@ https://nuxtjs.org/api/configuration-loading/
 
 ### click for modal, click off.
 
+### replace emojis with svg icons.
+
+### dim the icons (to stand out less)
+
+### fix pinterest media link (rehost image?)
+
 ## ads!
 
 ### display on layout behind card

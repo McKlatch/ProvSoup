@@ -1,13 +1,20 @@
 <template>
-  <form class="w-full max-w-sm">
-    <div class="flex items-center py-1">
-      <input v-model="searchValue" class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none" type="text" :placeholder="'🔎 ' + proverb" aria-label="Search">
-      <!--  <button class="flex-shrink-0 border-transparent border-4 py-1 px-2 rounded" type="button">
-        🔀
-      </butto -->
+  <div>
+  <div class="flex items-center">
+  <form @submit.prevent="toTopResult" class="w-full max-w-sm">
+    <div class="flex-auto">
+      <input autofocus v-model="searchValue" @keyup.enter="submit" class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none" type="text" :placeholder="'🔎 ' + proverb" aria-label="Search" title="Search">
     </div>
-    <results-display :suggests="suggests" />
   </form>
+  <nuxt-link :to="'/' + randomQuoteLabel" class="flex-auto">
+      <button class="bg-gray-300 hover:bg-gray-400 sm:text-lg md:text-2xl py-1 px-2 rounded-tr" title="Random Proverb">
+        🔀
+      </button>
+    </nuxt-link>
+    
+  </div>
+  <results-display :suggests="suggests" />
+</div>
 </template>
 
 <script>
@@ -50,6 +57,24 @@ export default {
         })
       })
       return this.searchValue ? displaySuggests : []
+    },
+    suggestsTop() {
+      return this.suggests.slice(0, 1)[0]
+    },
+    randomQuoteLabel() {
+      const rdyQuotes = this.$store.getters.readyQuotes
+      const filteredQuotes = rdyQuotes.filter(index => {
+        return index.label !== this.label
+      })
+      const rand = Math.floor(Math.random() * filteredQuotes.length)
+      return filteredQuotes[rand].label
+    },
+  },
+  methods: {
+    toTopResult() {
+      this.$router.push({
+        path: `/${this.suggestsTop.label}`
+      })
     }
   },
   created() {
