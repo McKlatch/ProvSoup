@@ -20,6 +20,8 @@ https://nuxtjs.org/api/configuration-loading/
 
 ### fix pinterest media link (rehost image?)
 
+### tab through typeahead suggestions
+
 ## ads!
 
 ### display on layout behind card
