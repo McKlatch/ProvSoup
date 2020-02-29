@@ -1,4 +1,14 @@
 <template>
-  <div class="bg-blue-200 h-screen w-screen">
-  </div>
+  <!-- <vultr-ad /> -->
 </template>
+
+<script>
+// import VultrAd from '~/components/ads/vultr'
+
+export default {
+  components: {
+    // VultrAd
+  }
+}
+
+</script>

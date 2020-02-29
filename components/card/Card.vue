@@ -1,6 +1,6 @@
 <template>
-  <div class="absolute inset-0 flex items-center justify-center">
-    <div class="max-w-sm rounded overflow-hidden shadow-md">
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+    <div class="max-w-sm rounded overflow-hidden shadow-md pointer-events-auto">
       <card-top :label="label" :proverb="proverb"/>
       <card-body :label="label" :origin="origin" :proverb="proverb" />
       <card-bottom :label="label" :origin="origin" :proverb="proverb" :source="source" />
