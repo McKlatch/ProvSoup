@@ -22,6 +22,8 @@ https://nuxtjs.org/api/configuration-loading/
 
 ### tab through typeahead suggestions
 
+### animate everything!!!!
+
 ## ads!
 
 ### display on layout behind card

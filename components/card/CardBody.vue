@@ -1,9 +1,19 @@
 <template>
-  <img class="w-full" :src="displayImgURL" :alt="`&quot;${proverb}&quot; - ${origin}`">
+  <div>
+    <image-modal :show="showModal" @close="showModal = false" >
+      <img class="h-full object-contain" :src="displayImgURL" :alt="`&quot;${proverb}&quot; - ${origin}`">
+    </image-modal>
+    <img class="w-full" :src="displayImgURL" :alt="`&quot;${proverb}&quot; - ${origin}`" @click="showModal = true">
+  </div>
 </template>
 
 <script>
+import ImageModal from '~/components/card/ImageModal'
+
 export default {
+  components: {
+    ImageModal
+  },
   props: {
     label: {
       type: String,
@@ -19,6 +29,11 @@ export default {
       type: String,
       required: true,
       default: 'Loading...'
+    }
+  },
+  data() {
+    return {
+      showModal: false
     }
   },
   computed: {
