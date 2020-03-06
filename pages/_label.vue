@@ -37,6 +37,8 @@ export default {
         { hid: 'twitter:url', name: 'twitter:url', content: `https://proverbialsoup.com/${this.quote.label}/` },
         { hid: 'twitter:description', name: 'twitter:description', content: `"${this.quote.proverb}" and other beneficial sayings worth repeating and sharing in real life (or Online). Timeless proverbs, captivating imagery, curated.` },
         { hid: 'twitter:image', name: 'twitter:image', content: 'https://proverbialsoup.com' + require(`~/assets/img/quotes/${this.quote.label}.png`) },
+        // awin verification
+        { hid: 'verification', name: 'verification', content: 'ebb237a3e04660f87928beda0252d2b8'}
       ]
     }
   },

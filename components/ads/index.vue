@@ -1,17 +1,21 @@
 <template>
-  <vultr-ad />
+  <div>
+    <vultr-ad v-if="false" />
+    <degusta-ad v-if="true" />
+  </div>
 </template>
 
 <script>
 import VultrAd from '~/components/ads/vultr'
+import DegustaAd from '~/components/ads/degusta'
 
 export default {
   components: {
-    VultrAd
+    VultrAd, DegustaAd
   },
   data() {
     return {
-      adsAvailable: 1
+      adsAvailable: 2
     }
   },
   computed: {
