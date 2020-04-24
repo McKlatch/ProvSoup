@@ -1,21 +1,23 @@
 <template>
   <div>
     <vultr-ad v-if="false" />
-    <degusta-ad v-if="true" />
+    <degusta-ad v-if="false" />
+    <ethic-super-ad v-if="true" />
   </div>
 </template>
 
 <script>
 import VultrAd from '~/components/ads/vultr'
 import DegustaAd from '~/components/ads/degusta'
+import EthicSuperAd from '~/components/ads/ethicalsuperstore'
 
 export default {
   components: {
-    VultrAd, DegustaAd
+    VultrAd, DegustaAd, EthicSuperAd
   },
   data() {
     return {
-      adsAvailable: 2
+      adsAvailable: 3
     }
   },
   computed: {

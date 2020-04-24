@@ -2,6 +2,8 @@
 
 ## Interface
 
+swipe to next proverb
+
 ### Search Quotes
 Search by text box 🔎 typeahead dropdown
 
@@ -29,6 +31,13 @@ https://nuxtjs.org/api/configuration-loading/
 ### display on layout behind card
 
 https://www.vultr.com/?ref=8189154
+
+https://www.awin1.com/cread.php?awinmid=12261&awinaffid=667291&clickref=ProvSoup&p=%5B%5Bhttps%253A%252F%252Fwww.degustabox.com%252F%5D%5D
+Get £5.00 off your first Degusta Box, as well as free delivery!
+Pay around 60% less than you would in the shops
+
+https://www.awin1.com/cread.php?awinmid=3651&awinaffid=667291&clickref=ProvSoup&ued=http%3A%2F%2Fethicalsuperstore.com
+We want to give you the choice to use ethical products that suit your lifestyle
 
 ## More Pages
 
