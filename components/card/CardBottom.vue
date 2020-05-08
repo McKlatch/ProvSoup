@@ -68,21 +68,21 @@
 <!-- copy url -->
 <a @click.prevent="copyLink" class="flex-auto" aria-label="">
     <button :class="socialIconButton" title="Copy Link">
-      <span :class="socialIconClass + ' sm:text-lg md:text-2xl'">🔗</span>
+      <span :class="socialIconClass + ' sm:text-lg md:text-2xl'"><i class="las la-copy"></i></span>
     </button>
   </a>
 
     <!-- copy prov text -->
     <a @click.prevent="copyProverb" class="flex-auto" aria-label="">
     <button :class="socialIconButton" title="Copy Proverb">
-      <span :class="socialIconClass + ' sm:text-lg md:text-2xl'">📋</span>
+      <span :class="socialIconClass + ' sm:text-lg md:text-2xl'"><i class="las la-clipboard"></i></span>
     </button>
   </a>
 
     <!-- search -->
     <a class="flex-auto" :href="discoverLink" target="_blank" rel="noopener" aria-label="">
       <button :class="socialIconButton + ' rounded-br'" title="More about this proverb">
-        <span :class="socialIconClass + ' sm:text-lg md:text-2xl'">📖</span>
+        <span :class="socialIconClass + ' sm:text-lg md:text-2xl'"><i class="las la-search"></i></span>
       </button>
     </a>
   </div>

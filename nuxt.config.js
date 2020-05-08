@@ -28,7 +28,8 @@ export default {
   */
   css: [
     // CSS file in the project
-    '@/assets/css/style.css'
+    '@/assets/css/style.css',
+    '@/assets/line-awesome/css/line-awesome.min.css'
   ],
   /*
   ** Plugins to load before mounting the App
