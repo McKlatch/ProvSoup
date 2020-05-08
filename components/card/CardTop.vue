@@ -8,7 +8,7 @@
   </form>
   <nuxt-link :to="'/' + randomQuoteLabel" class="flex-auto">
       <button class="bg-gray-300 hover:bg-gray-400 sm:text-lg md:text-2xl py-1 px-2 rounded-tr" title="Random Proverb">
-        <i class="las la-random"></i>
+        <i class="las la-random" style="color:#777"></i>
       </button>
     </nuxt-link>
     
