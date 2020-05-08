@@ -1,7 +1,7 @@
 <template>
 <a class="flex-1" :href="clickURL" target="_blank" rel="noopener" aria-label="" aria-hidden="true">
-  <button class="bg-gray-300 hover:bg-gray-400 h-full" :title="titleText">
-    <span class="m-2 mt-2 sm:text-lg md:text-2xl">
+  <button class="bg-gray-300 hover:bg-gray-400" :title="titleText">
+    <span class="m-1 mt-2 sm:text-lg md:text-2xl">
       <slot />
     </span>
   </button>
