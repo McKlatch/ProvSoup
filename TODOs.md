@@ -3,30 +3,25 @@
 ## Interface
 
 swipe to next proverb
+swipe to next in modal
+hide whatsapp share on desktops (https://stackoverflow.com/questions/48515023/display-different-vuejs-components-for-mobile-browsers)
 
 ### Search Quotes
-Search by text box 🔎 typeahead dropdown
 
 ### page loading spinner
 https://nuxtjs.org/api/configuration-loading/
 
-### alt text on social icons
-
-### title text on images
-
-### click for modal, click off.
-
-### replace emojis with svg icons.
-
-### dim the icons (to stand out less)
-
 ### fix pinterest media link (rehost image?)
+
+### fix whatsapp media link (where is image?)
 
 ### tab through typeahead suggestions
 
 ### animate everything!!!!
 
 ## ads!
+
+list ad components in database
 
 ### display on layout behind card
 
@@ -77,6 +72,8 @@ switch API from:
 sheety.co
 to:
 firestore
+
+load proverbs sorted by date << < [] > >> with next and back buttons/swipe
 
 ## sitemap.xml
 
