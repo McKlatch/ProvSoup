@@ -3,7 +3,7 @@
   <div class="flex items-center bg-gray-100">
   <form @submit.prevent="toTopResult" class="w-full max-w-sm">
     <div class="flex-auto">
-      <input autofocus v-model="searchValue" class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none font-body" type="text" :placeholder="'🔎 ' + proverb" aria-label="Search" title="Search">
+      <input autofocus v-model="searchValue" class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none font-body" type="text" :placeholder="'🔎 ' + quote.text" aria-label="Search" title="Search">
     </div>
   </form>
   <nuxt-link :to="'/' + randomQuoteLabel" class="flex-auto">
@@ -18,19 +18,27 @@
 </template>
 
 <script>
+  import * as firebase from 'firebase/app'
+import 'firebase/firestore'
+
 import ResultsDisplay from '~/components/card/search/Results'
 
 export default {
   props: {
-    label: {
-      type: String,
+    quote: {
+      type: Object,
       required: true,
-      default: 'NotLoaded'
-    },
-    proverb:{
-      type: String,
-      required: true,
-      default: 'Loading...'
+      default: {
+        tags: [],
+        contributor: 'proverb contributor',
+        id: 'NotLoaded',
+        created: new firebase.firestore.Timestamp(),
+        imageURL: 'image URL',
+        citation: 'proverb citation',
+        text: 'proverb text',
+        published: true,
+        edited: new firebase.firestore.Timestamp()
+      }
     }
   },
   data() {
@@ -43,17 +51,17 @@ export default {
     suggests() {
       const regex = new RegExp(this.searchValue, 'gi')
       const filteredQuotes = this.quotes.filter(index => {
-        return index.label !== this.label
+        return index.id !== this.quote.id
       })
       const matches = filteredQuotes.filter(quote => {
-        return quote.proverb.match(regex) || quote.origin.match(regex)
+        return quote.text.match(regex) || quote.contributor.match(regex)
       })
       let displaySuggests = []
       matches.forEach(quote => {
         displaySuggests.push({
-          label: quote.label,
-          showProverb: quote.proverb.replace(regex, `<span class="suggestHL">${this.searchValue}</span>`),
-          showOrigin: quote.origin.replace(regex, `<span class="suggestHL">${this.searchValue}</span>`)
+          label: quote.id,
+          showProverb: quote.text.replace(regex, `<span class="suggestHL">${this.searchValue}</span>`),
+          showOrigin: quote.contributor.replace(regex, `<span class="suggestHL">${this.searchValue}</span>`)
         })
       })
       return this.searchValue ? displaySuggests : []
@@ -62,13 +70,12 @@ export default {
       return this.suggests.slice(0, 1)[0]
     },
     randomQuoteLabel() {
-      const rdyQuotes = this.$store.getters.readyQuotes
-      const filteredQuotes = rdyQuotes.filter(index => {
-        return index.label !== this.label
-      })
-      const rand = Math.floor(Math.random() * filteredQuotes.length)
-      return filteredQuotes[rand].label
-    },
+      let randomID
+      do {
+        randomID = this.$store.getters.randomQuoteID(Math.floor(Math.random() * this.$store.getters.quotesCount))
+      } while (randomID == this.quote.id)
+      return randomID
+    }
   },
   methods: {
     toTopResult() {
@@ -78,7 +85,7 @@ export default {
     }
   },
   created() {
-    this.quotes = this.$store.getters.readyQuotes
+    this.quotes = this.$store.getters.quotes
   },
   components: {
     ResultsDisplay

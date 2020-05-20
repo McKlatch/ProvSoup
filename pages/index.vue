@@ -1,7 +1,10 @@
 <template>
-  <card :label="quote.label" :origin="quote.origin" :proverb="quote.proverb" :source="quote.source" />
+  <card :quote="quote" />
 </template>
 <script>
+  import * as firebase from 'firebase/app'
+import 'firebase/firestore'
+
 import Card from '~/components/card/Card'
 
 export default {
@@ -23,18 +26,22 @@ export default {
   data() {
     return {
       quote: {
-        label: 'NotLoaded',
-        origin: 'ProvSoup ',
-        proverb: 'Loading...',
-        source: 'https://proverbialsoup.com/'
+        tags: [],
+        contributor: 'proverb contributor',
+        id: 'NotLoaded',
+        created: new firebase.firestore.Timestamp(),
+        imageURL: 'image URL',
+        citation: 'proverb citation',
+        text: 'proverb text',
+        published: true,
+        edited: new firebase.firestore.Timestamp()
       }
     }
   },
   created() {
-    const rdyQuotes = this.$store.getters.readyQuotes
-    const rand = Math.floor(Math.random() * rdyQuotes.length)
+    const rand = Math.floor(Math.random() * this.$store.getters.quotesCount)
     this.$router.push({
-      path: `/${rdyQuotes[rand].label}`
+      path: `/${this.$store.getters.randomQuoteID(rand)}`
     })
   }
 }

@@ -1,13 +1,16 @@
 <template>
   <div>
     <image-modal :show="showModal" @close="showModal = false" >
-      <img class="h-full object-contain" :src="displayImgURL" :alt="`&quot;${proverb}&quot; - ${origin}`">
+      <img class="h-full object-contain" :src="displayImgURL" :alt="`&quot;${quote.text}&quot; - ${quote.contributor}`">
     </image-modal>
-    <img class="w-full" :src="displayImgURL" :alt="`&quot;${proverb}&quot; - ${origin}`" @click="showModal = true">
+    <img class="w-full" :src="displayImgURL" :alt="`&quot;${quote.text}&quot; - ${quote.contributor}`" @click="showModal = true">
   </div>
 </template>
 
 <script>
+  import * as firebase from 'firebase/app'
+import 'firebase/firestore'
+
 import ImageModal from '~/components/card/ImageModal'
 
 export default {
@@ -15,20 +18,20 @@ export default {
     ImageModal
   },
   props: {
-    label: {
-      type: String,
+    quote: {
+      type: Object,
       required: true,
-      default: 'NotLoaded'
-    },
-    origin: {
-      type: String,
-      required: true,
-      default: 'ProvSoup '
-    },
-    proverb:{
-      type: String,
-      required: true,
-      default: 'Loading...'
+      default: {
+        tags: [],
+        contributor: 'proverb contributor',
+        id: 'NotLoaded',
+        created: new firebase.firestore.Timestamp(),
+        imageURL: 'image URL',
+        citation: 'proverb citation',
+        text: 'proverb text',
+        published: true,
+        edited: new firebase.firestore.Timestamp()
+      }
     }
   },
   data() {
@@ -38,10 +41,10 @@ export default {
   },
   computed: {
     displayImgURL() {
-      if (this.label === "NotLoaded") {
-        return require(`~/assets/img/quotes/${this.label}.gif`)
+      if (this.quote.id === "NotLoaded") {
+        return require(`~/assets/img/quotes/${this.quote.id}.gif`)
       }
-      return require(`~/assets/img/quotes/${this.label}.png`)
+      return require(`~/assets/img/quotes/${this.quote.id}.png`)
     }
   }
 }
