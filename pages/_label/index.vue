@@ -1,5 +1,5 @@
 <template>
-  <card :quote="quote" />
+  <card :quote="quote" class="absolute inset-0" />
 </template>
 <script>
   import * as firebase from 'firebase/app'

@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+  <div class="flex items-center justify-center pointer-events-none">
     <div class="max-w-sm rounded overflow-hidden shadow-md pointer-events-auto">
       <card-top :quote="quote" />
       <card-body :quote="quote" />

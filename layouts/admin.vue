@@ -1,8 +1,11 @@
 <template>
   <div>
     <logo class="absolute top-0 left-0 m-1 w-8 md:m-4 md:w-10" />
-    <div class="absolute right-0 m-4">
-    <button v-if="loggedIn" @click="logout" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+    <div class="absolute top-0 right-0 m-4">
+    <button v-if="$route.name != 'admin'" @click="$router.push('/admin/')" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+  Admin
+</button>
+    <button v-if="loggedIn" @click="logout" class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
   Logout
 </button>
 </div>
@@ -35,7 +38,6 @@ export default {
     setupFirebase() {
       firebase.auth().onAuthStateChanged(user => {
         if(user) {
-          console.log('logged in')
           this.loggedIn = true
           firebase.auth().currentUser.getIdToken(true).then(token => {
             Cookies.set('access_token', token)
@@ -55,6 +57,7 @@ export default {
     Logo,
     Social
   },
+  middleware: ['auth'],
   head() {
     return {
       bodyAttrs: {

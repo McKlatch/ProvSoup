@@ -13,27 +13,27 @@
 </template>
 
 <script>
-  import * as firebase from 'firebase/app'
-  import 'firebase/auth'
+  // import * as firebase from 'firebase/app'
+  // import 'firebase/auth'
 
-  import { getUserFromCookie } from '@/helpers'
+  // import { getUserFromCookie } from '@/helpers'
 
   import List from '~/components/list/List'
 
   export default {
-    asyncData({req, redirect}) {
-      if (process.server) {
-        const user = getUserFromCookie(req)
-        if (!user) {
-          redirect('/admin/login')
-        }
-      } else {
-        let user = firebase.auth().currentUser
-        if (!user) {
-          redirect('/admin/login')
-        }
-      }
-    },
+    // asyncData({req, redirect}) {
+    //   if (process.server) {
+    //     const user = getUserFromCookie(req)
+    //     if (!user) {
+    //       redirect('/admin/login')
+    //     }
+    //   } else {
+    //     let user = firebase.auth().currentUser
+    //     if (!user) {
+    //       redirect('/admin/login')
+    //     }
+    //   }
+    // },
     components: {
       List
     },
