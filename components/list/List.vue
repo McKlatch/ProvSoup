@@ -14,7 +14,7 @@
       }
     },
     created() {
-      this.quotes = this.$store.getters.quotes
+      this.quotes = this.$store.getters.quotesAll
     },
     components: {
       ListItem

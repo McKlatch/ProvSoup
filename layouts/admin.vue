@@ -2,7 +2,7 @@
   <div>
     <logo class="absolute top-0 left-0 m-1 w-8 md:m-4 md:w-10" />
     <div class="absolute top-0 right-0 m-4">
-    <button v-if="$route.name != 'admin'" @click="$router.push('/admin/')" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+    <button v-if="$route.name != 'admin' && loggedIn" @click="$router.push('/admin/')" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
   Admin
 </button>
     <button v-if="loggedIn" @click="logout" class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">

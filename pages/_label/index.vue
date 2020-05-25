@@ -65,6 +65,9 @@ export default {
   },
   created() {
     this.quote = this.$store.getters.getQuoteByLabel(this.$route.params.label)
+    if (!this.quote.published) {
+      this.$router.push('/')
+    }
   }
 }
 </script>

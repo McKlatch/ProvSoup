@@ -6,6 +6,9 @@
     <p class="text-blue-500 font-semibold text-xs mb-1 leading-none">Admin Area</p>
     <h3 class="font-semibold text-xl leading-tight sm:leading-normal">Do all the things</h3>
     <list class="pt-4" />
+    <button @click="$router.push('/admin/new')" class="w-1/4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+      New
+    </button>
   </div>
 </div>
   </div>
@@ -13,27 +16,9 @@
 </template>
 
 <script>
-  // import * as firebase from 'firebase/app'
-  // import 'firebase/auth'
-
-  // import { getUserFromCookie } from '@/helpers'
-
   import List from '~/components/list/List'
 
   export default {
-    // asyncData({req, redirect}) {
-    //   if (process.server) {
-    //     const user = getUserFromCookie(req)
-    //     if (!user) {
-    //       redirect('/admin/login')
-    //     }
-    //   } else {
-    //     let user = firebase.auth().currentUser
-    //     if (!user) {
-    //       redirect('/admin/login')
-    //     }
-    //   }
-    // },
     components: {
       List
     },

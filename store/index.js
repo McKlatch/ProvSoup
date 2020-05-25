@@ -8,6 +8,17 @@ export const state = () => ({
 export const mutations = {
   setQuotes(state, quotes) {
     state.quotes = quotes
+  },
+  addQuote(state, quote) {
+    state.quotes.push(quote)
+  },
+  updateQuote(state, quote) {
+    const index = state.quotes.findIndex(i => i.id == quote.id)
+    state.quotes[index] = quote
+  },
+  deleteQuote(state, quote) {
+    const index = state.quotes.findIndex(i => i.id == quote.id)
+    state.quotes.splice(index, 1)
   }
 }
 
@@ -26,14 +37,59 @@ export const actions = {
   },
   setQuotes(vuexContext, quotes) {
     vuexContext.commit('setQuotes', quotes)
+  },
+  addQuote(vuexContext, quote) {
+    return firebase.firestore().collection('quotes')
+    .add(quote)
+    .then(data => {
+      vuexContext.commit('addQuote', quote)
+    })
+    .catch(e => console.log(e))
+  },
+  updateQuote(vuexContext, quote) {
+    const query = firebase.firestore().collection('quotes').where('id', '==', quote.id)
+    let postID
+    return query.get()
+    .then(res => {
+      res.forEach((doc) => {
+        postID = doc.id
+      })
+    })
+    .then(res => {
+      firebase.firestore().collection('quotes').doc(postID).update(quote)
+    })
+    .then(res => {
+      vuexContext.commit('updateQuote', quote)
+    })
+    .catch(e => console.log(e))
+  },
+  deleteQuote(vuexContext, quote) {
+    const query = firebase.firestore().collection('quotes').where('id', '==', quote.id)
+    let postID
+    return query.get()
+    .then(res => {
+      res.forEach((doc) => {
+        postID = doc.id
+      })
+    })
+    .then(res => {
+      firebase.firestore().collection('quotes').doc(postID).delete()
+    })
+    .then(res => {
+      vuexContext.commit('deleteQuote', quote)
+    })
+    .catch(e => console.log(e))
   }
 }
 
 export const getters = {
   getQuoteByLabel: (state, getters) => label => {
-    return getters.quotes.find(quote => quote.id === label)
+    return getters.quotesAll.find(quote => quote.id === label)
   },
   quotes(state) {
+    return state.quotes.filter(quote => quote.published)
+  },
+  quotesAll(state) {
     return state.quotes
   },
   randomQuoteID: (state, getters) => seed => {
