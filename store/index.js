@@ -51,7 +51,7 @@ export const actions = {
     let postID
     return query.get()
     .then(res => {
-      res.forEach((doc) => {
+      res.forEach(doc => {
         postID = doc.id
       })
     })

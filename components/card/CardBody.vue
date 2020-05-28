@@ -44,7 +44,7 @@ export default {
       if (this.quote.id === "NotLoaded") {
         return require(`~/assets/img/quotes/${this.quote.id}.gif`)
       }
-      return require(`~/assets/img/quotes/${this.quote.id}.png`)
+      return this.quote.imageURL
     }
   }
 }

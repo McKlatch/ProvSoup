@@ -42,7 +42,6 @@
     methods: {
       submitPressed() {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(data => {
-          console.log(data)
           this.$router.push('/admin')
         }).catch(error => this.error = error)
       }

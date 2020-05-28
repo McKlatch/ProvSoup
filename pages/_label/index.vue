@@ -29,7 +29,7 @@ export default {
           ${this.quote.contributor} quote on Proverbial Soup · Beneficial sayings worth repeating and sharing in real life
           (or Online). Timeless proverbs, captivating imagery, curated.
         ` },
-        { hid: 'og:image', property: 'og:image', content: 'https://proverbialsoup.com' + require(`~/assets/img/quotes/${this.quote.id}.png`) },
+        { hid: 'og:image', property: 'og:image', content: this.quote.imageURL },
         { hid: 'og:image:width', property: 'og:image:width', content: '1080' },
         { hid: 'og:image:height', property: 'og:image:height', content: '1080' },
         { hid: 'og:image:alt', property: 'og:image:alt', content: this.quote.text },
@@ -39,7 +39,7 @@ export default {
           ${this.quote.contributor} quote on @ProvSoup` },
         { hid: 'twitter:url', name: 'twitter:url', content: `https://proverbialsoup.com/${this.quote.id}/` },
         { hid: 'twitter:description', name: 'twitter:description', content: `"${this.quote.text}" and other beneficial sayings worth repeating and sharing in real life (or Online). Timeless proverbs, captivating imagery, curated.` },
-        { hid: 'twitter:image', name: 'twitter:image', content: 'https://proverbialsoup.com' + require(`~/assets/img/quotes/${this.quote.id}.png`) },
+        { hid: 'twitter:image', name: 'twitter:image', content: this.quote.imageURL },
         // awin verification
         { hid: 'verification', name: 'verification', content: 'ebb237a3e04660f87928beda0252d2b8'}
       ]

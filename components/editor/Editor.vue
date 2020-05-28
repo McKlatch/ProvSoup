@@ -1,7 +1,15 @@
 <template>
 <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
   <div class="-mx-3 md:flex mb-6">
-    <div class="md:w-11/12 px-3 mb-6 md:mb-0">
+    <div class="md:w-5/12 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="image">
+       Upload Image
+      </label>
+      <progress v-show="uploadProgress" value="uploadProgress" max="100" class="appearance-none block w-full"></progress>
+      <input @change="uploadFile" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4" id="image" type="file" accept="image/*" value="upload"></input>
+      <p v-if="uploadError" class="text-center text-md font-light">{{uploadError.message}}</p>
+    </div>
+    <div class="md:w-6/12 px-3 mb-6 md:mb-0">
       <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="imgURL">
        Image URL
       </label>
@@ -35,6 +43,7 @@
         Proverb ID/Shorthand/Slug
       </label>
       <input v-model="editQuote.id" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="id" type="text" :disabled="!isNew">
+      <p class="text-grey-dark text-xs italic">This can NOT be changed later</p>
     </div>
   </div>
   <div class="-mx-3 md:flex mb-6">
@@ -72,6 +81,7 @@
 <script>
   import * as firebase from 'firebase/app'
   import 'firebase/firestore'
+  import 'firebase/storage'
 
   export default {
     data() {
@@ -86,7 +96,9 @@
           text: '',
           published: false,
           edited: new firebase.firestore.Timestamp()
-        }
+        },
+        uploadProgress: 0,
+        uploadError: ''
       }
     },
     props: {
@@ -154,6 +166,23 @@
             this.$router.push('/admin')
           })
         }
+      },
+      uploadFile(e) {
+        const file = e.target.files[0]
+        const storageRef = firebase.storage().ref(file.name)
+        const task = storageRef.put(file)
+        task.on('state_changed', snapshot => {
+          this.updateProgressBar(task.snapshot)
+        }, error => {
+          this.uploadError = error
+        }, () => {
+          task.snapshot.ref.getDownloadURL().then(downloadURL => {
+            this.editQuote.imageURL = downloadURL
+          })
+        })
+      },
+      updateProgressBar(snapshot) {
+        this.uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
       }
     }
   }

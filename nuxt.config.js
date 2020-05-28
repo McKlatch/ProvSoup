@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 require('dotenv').config()
 
 export default {
@@ -64,53 +66,14 @@ export default {
    */
   generate: {
     dir: 'public',
-    routes: [
-      '/ArguingWithAFool',
-      '/CanShouldComfortableGood',
-      '/CantGetItWrong',
-      '/ChopDownATree',
-      '/CriticismTakeAdviceFrom',
-      '/DistressedExternalPainItself',
-      '/DontChooseOurFeelings',
-      '/DontHeroinLoveIt',
-      '/DoRightPeopleNotice',
-      '/DrinkPoisonOtherDies',
-      '/EasierFoolConvinceThem',
-      '/FirstStepsPraiseFirst',
-      '/GentleAnswerHarshWords',
-      '/HealHurtBleedPeople',
-      '/IntelligenceCapacityMistakeBefore',
-      '/JudgeIntentionsJudgeBehaviour',
-      '/LearnFromMistakesShort',
-      '/LivingTellTheirStory',
-      '/MeasureTwiceCutOnce',
-      '/NoMistakesStillLose',
-      '/PlanningWarsGeneralsTent',
-      '/ProblemFixNoWorry',
-      '/RaiseKidsSpoilKids',
-      '/SweatPeaceBleedWar',
-      '/TrueMasterEternalStudent',
-      '/TwoLivesOnlyOne',
-      '/ValorStabilityCourageSoul',
-      '/WeGaveOurToday',
-      '/WeSufferFromImagination',
-      '/WorldChangeExampleOpinion',
-      '/BeingGoodAtSomething',
-      '/BlameMaliceExplainStupidity',
-      '/BuyCheapBuyTwice',
-      '/CantHelpedMustEndured',
-      '/DoNothingEvilTriumphs',
-      '/FoolExpressingHisOpinion',
-      '/HaveEnoughToEat',
-      '/InformationLearnedValuableGiven',
-      '/MistakeSmartPersonMake',
-      '/OutOfPositionReason',
-      '/PlantTreeRightNow',
-      '/RemailSilentThoughtFool',
-      '/ThreeSidesEveryStory',
-      '/ThroughHellKeepGoing',
-      '/UsWhoNowWhen'
-    ]
+    routes () {
+      return axios.get('https://firestore.googleapis.com/v1/projects/provsoup/databases/(default)/documents/quotes')
+        .then((res) => {
+          return res.data.map((quote) => {
+            return '/' + quote.id
+          })
+        })
+    }
   },
   
   /*
