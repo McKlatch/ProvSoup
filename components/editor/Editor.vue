@@ -70,7 +70,7 @@
 <button v-if="!isNew" @click="remove" class="w-1/4 bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
   Delete
 </button>
-<button v-else @click="$router.push('/admin/')" class="w-1/4 bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
+<button v-else @click="forgetImage" class="w-1/4 bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
   Forget
 </button>
 
@@ -159,13 +159,24 @@
         }
       },
       remove() {
-        var result = confirm("Are you sure?");
+        let result = confirm("Are you sure?");
         if (result) {
           this.$store.dispatch('deleteQuote', this.quote)
           .then(() => {
-            this.$router.push('/admin')
+            this.forgetImage
           })
         }
+      },
+      forgetImage() {
+        if (this.editQuote.imageURL) {
+          const storage = firebase.storage()
+          const storageRef = storage.refFromURL(this.editQuote.imageURL)
+          storageRef.delete().then(() => {
+            this.$router.push('/admin')
+          }).catch(error => {
+            console.log('Uh-oh, an error occurred!', error.message)
+          })
+        } else { this.$router.push('/admin') }
       },
       uploadFile(e) {
         const file = e.target.files[0]
