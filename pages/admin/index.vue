@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+  <div class="flex items-center justify-center">
     <div class="w-full rounded overflow-hidden shadow-md pointer-events-auto">
       <div class="bg-white overflow-hidden border-b-4 border-blue-500">
   <div class="p-4 md:p-6">

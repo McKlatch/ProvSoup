@@ -1,5 +1,5 @@
 <template>
-  <div class="inline-flex w-full hover:bg-teal-100" @click="$router.push(`/${quote.id}/edit/`)">
+  <div class="inline-flex w-full hover:bg-teal-100" @click="$router.push(`/admin/${quote.id}/`)">
     <div class="">
       <img
         :alt="quote.id"

@@ -9,11 +9,8 @@
       <input @change="uploadFile" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4" id="image" type="file" accept="image/*" value="upload"></input>
       <p v-if="uploadError" class="text-center text-md font-light">{{uploadError.message}}</p>
     </div>
-    <div class="md:w-6/12 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="imgURL">
-       Image URL
-      </label>
-      <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4" id="imgURL" type="text" v-model="editQuote.imageURL"></input>
+    <div class="md:w-3/12 px-3 mb-6 md:mb-0">
+      <img class="h-full object-contain" :src="editQuote.imageURL" :alt="editQuote.imageURL">
     </div>
     <div class="md:w-1/12 px-3 mb-6 md:mb-0">
       <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="published">

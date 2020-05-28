@@ -1,7 +1,6 @@
 <template>
   <div class="flex flex-wrap pt-4">
-    <editor :quote="quote" class="sm:w-full md:w-1/2 lg:w-3/4" />
-    <card :quote="quote" class="sm:w-full md:w-1/2 lg:w-1/4" />
+    <editor :quote="quote" class="w-full" />
   </div>
 </template>
 <script>
