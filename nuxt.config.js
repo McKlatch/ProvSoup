@@ -46,6 +46,8 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
+    // https://github.com/nuxt/components
+    '@nuxt/components'
   ],
   /*
   ** Nuxt.js modules
@@ -60,7 +62,7 @@ export default {
   /*
   ** Build configuration
   */
- 
+  components: true,
   /*
    ** Customize the generated output folder
    */

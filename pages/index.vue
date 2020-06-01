@@ -2,10 +2,8 @@
   <card :quote="quote" />
 </template>
 <script>
-  import * as firebase from 'firebase/app'
+import * as firebase from 'firebase/app'
 import 'firebase/firestore'
-
-import Card from '~/components/card/Card'
 
 export default {
   head() {
@@ -19,9 +17,6 @@ export default {
         ` }
       ]
     }
-  },
-  components: {
-    Card
   },
   data() {
     return {

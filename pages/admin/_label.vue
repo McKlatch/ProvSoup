@@ -7,9 +7,6 @@
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 
-import Card from '~/components/card/Card'
-import Editor from '~/components/editor/Editor'
-
 export default {
   validate ({ params }) {
     // Must be a number
@@ -20,9 +17,6 @@ export default {
       title: `Editing · ${this.quote.text}`,
     }
   },
-  components: {
-    Card, Editor
-  },
   data() {
     return {
       quote: {
@@ -30,7 +24,7 @@ export default {
         contributor: 'proverb contributor',
         id: 'NotLoaded',
         created: new firebase.firestore.Timestamp(),
-        imageURL: 'image URL',
+        imageURL: '',
         citation: 'proverb citation',
         text: 'proverb text',
         published: true,

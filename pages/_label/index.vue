@@ -2,10 +2,8 @@
   <card :quote="quote" class="absolute inset-0" />
 </template>
 <script>
-  import * as firebase from 'firebase/app'
+import * as firebase from 'firebase/app'
 import 'firebase/firestore'
-
-import Card from '~/components/card/Card'
 
 export default {
   validate ({ params }) {
@@ -45,9 +43,6 @@ export default {
       ]
     }
   },
-  components: {
-    Card
-  },
   data() {
     return {
       quote: {
@@ -55,7 +50,7 @@ export default {
         contributor: 'proverb contributor',
         id: 'NotLoaded',
         created: new firebase.firestore.Timestamp(),
-        imageURL: 'image URL',
+        imageURL: '',
         citation: 'proverb citation',
         text: 'proverb text',
         published: true,
