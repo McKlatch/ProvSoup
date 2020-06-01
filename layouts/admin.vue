@@ -1,14 +1,35 @@
 <template>
   <div>
-    <logo class="m-1 w-8" />
-    <div class="m-4">
-      <button v-if="$route.name != 'admin' && loggedIn" @click="$router.push('/admin/')" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-        Admin
-      </button>
-      <button v-if="loggedIn" @click="logout" class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
-        Logout
-      </button>
-    </div>
+    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <logo class="m-1 w-8" />
+      </div>
+      <div class="block lg:hidden">
+        <button @click="expandNav = !expandNav" class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+          <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+        </button>
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto md:hidden sm:hidden">
+        <div class="text-sm lg:flex-grow">
+          <a v-if="$route.name != 'admin' && loggedIn" @click="$router.push('/admin/')" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 cursor-pointer">
+            Admin
+          </a>
+        </div>
+        <div>
+          <a v-if="loggedIn" @click="logout" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 cursor-pointer">Logout</a>
+        </div>
+      </div>
+      <div v-if="expandNav" class="w-full block flex-grow lg:hidden">
+        <div class="text-sm">
+          <a v-if="$route.name != 'admin' && loggedIn" @click="$router.push('/admin/')" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 cursor-pointer">
+            Admin
+          </a>
+        </div>
+        <div>
+          <a v-if="loggedIn" @click="logout" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 cursor-pointer">Logout</a>
+        </div>
+      </div>
+    </nav>
     <nuxt />
   </div>
 </template>
@@ -24,7 +45,8 @@ import Social from '~/components/Social'
 export default {
   data() {
     return {
-      loggedIn: false
+      loggedIn: false,
+      expandNav: false
     }
   },
   methods: {
