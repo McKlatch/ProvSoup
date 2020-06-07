@@ -1,96 +1,48 @@
 <template>
   <FormulateForm @submit="update">
     <div class="flex flex-wrap">
-    <div class="w-full md:w-1/2">
-    <FormulateInput
-      v-if="!imagePresent"
-      type="image"
-      name="image"
-      label="Select an image to upload"
-      help="Select a png or jpg to upload (1080px x 1080p)"
-      validation="mime:image/jpeg,image/png"
-      :uploader="uploadFile"
-      :error="uploadError"
-    />
-    <div v-else class="mb-6">
-      <label for="imageSample" class="font-medium">Image</label>
-      <img @click="imagePresent = false" :src="editQuote.imageURL" :alt="editQuote.imageURL" width="100" height="100" name="imageSample" class="my-1 hover:opacity-50">
-      <div class="text-xs text-gray-700">Click to replace</div>
-    </div>
-    <FormulateInput
-      v-model="editQuote.text"
-      type="textarea"
-      name="text"
-      label="Proverb Text"
-      placeholder="Always do your best..."
-      help="Punctuation must match image"
-      validation="required"
-    />
-    <FormulateInput
-      v-model="editQuote.contributor"
-      type="text"
-      name="contributor"
-      label="Proverb Author/Contributor"
-      placeholder="Your Name"
-      help="Sample help text"
-      validation="required"
-    />
-    </div>
-    <div class="w-full md:w-1/2">
-    <FormulateInput
-      v-model="editQuote.id"
-      type="text"
-      name="id"
-      label="Proverb ID/Shorthand/Slug"
-      help="This can NOT be changed later"
-      validation="required"
-      :disabled="!isNew"
-    />
-    <FormulateInput
-      v-model="editQuote.citation"
-      type="text"
-      name="citation"
-      label="Proverb source/citation"
-      placeholder="e.g. Book/Film Title"
-    />
-    <FormulateInput
-      v-model="showTags"
-      type="textarea"
-      name="text"
-      label="Tags"
-      placeholder="Tag1, Tag2, Tag3"
-      help="Comma separated, list 8-30 tags"
-    />
-    </div>
+      <div class="w-full md:w-1/2">
+        <div v-if="!imagePresent" class="mb-6">
+          <FormulateInput type="image" name="image" label="Select an image to upload" help="Select a png or jpg to upload (1080px x 1080p)" validation="mime:image/jpeg,image/png" :uploader="uploadFile" :error="uploadError" />
+          <div class="flex flex-wrap">
+            <div class="flex flex-wrap">
+              <div class="flex flex-wrap w-1/2">
+              <img v-for="image in uploadedImages" @click="selectImage = image" :key="image" :src="image" width="40" height="40" class="hover:opacity-50">
+              </div>
+              <div class="w-1/2">
+                <img v-if="selectImage" :src="selectImage" width="200" height="200">
+                <p v-if="downloadError">{{ downloadError }}</p>
+                <FormulateInput v-if="selectImage" @click="setImage(selectImage)" type="button" label="Confirm" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-if="imagePresent" class="mb-6">
+          <label for="imageSample" class="font-medium">Image</label>
+          <img @click="imagePresent = false" :src="editQuote.imageURL" :alt="editQuote.imageURL" width="100" height="100" name="imageSample" class="my-1 hover:opacity-50">
+          <div class="text-xs text-gray-700">Click to replace</div>
+        </div>
+        <FormulateInput v-model="editQuote.text" type="textarea" name="text" label="Proverb Text" placeholder="Always do your best..." help="Punctuation must match image" validation="required" />
+        <FormulateInput v-model="editQuote.contributor" type="text" name="contributor" label="Proverb Author/Contributor" placeholder="Your Name" help="Sample help text" validation="required" />
+      </div>
+      <div class="w-full md:w-1/2">
+        <FormulateInput v-model="editQuote.id" type="text" name="id" label="Proverb ID/Shorthand/Slug" help="This can NOT be changed later" validation="required" :disabled="!isNew" />
+        <FormulateInput v-model="editQuote.citation" type="text" name="citation" label="Proverb source/citation" placeholder="e.g. Book/Film Title" />
+        <FormulateInput v-model="showTags" type="textarea" name="text" label="Tags" placeholder="Tag1, Tag2, Tag3" help="Comma separated, list 8-30 tags" />
+      </div>
     </div>
     </div>
     <div class="flex">
-    <div class="w-1/3 mb-6">
-    <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in my-1">
-      <input v-model="editQuote.published" type="checkbox" name="published" id="published" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
-      <label for="published" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-    </div>
-    <label for="published" class="font-medium">Live?</label>
-    </div>
-    <FormulateInput
-      type="submit"
-      :name="isNew ? 'Submit' : 'Update'"
-      class="w-1/3"
-    />
-    <FormulateInput
-      v-if="!isNew"
-      @click="remove"
-      type="button"
-      label="Delete"
-      class="w-1/3"
-    />
-    <FormulateInput
-      v-else
-      @click="forgetImage"
-      type="button"
-      label="Forget"
-      class="w-1/3"
-    />
+      <div class="w-1/3 mb-6">
+        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in my-1">
+          <input v-model="editQuote.published" type="checkbox" name="published" id="published" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
+          <label for="published" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+        </div>
+        <label for="published" class="font-medium">Live?</label>
+      </div>
+      <FormulateInput type="submit" :name="isNew ? 'Submit' : 'Update'" class="w-1/3" />
+      <FormulateInput v-if="!isNew" @click="remove" type="button" label="Delete" class="w-1/3" />
+      <FormulateInput v-else @click="forgetImage" type="button" label="Forget" class="w-1/3" />
     </div>
   </FormulateForm>
 </template>
@@ -117,7 +69,10 @@ export default {
       },
       uploadProgress: 0,
       uploadError: '',
-      imagePresent: false
+      imagePresent: false,
+      uploadedImages: [],
+      selectImage: '',
+      downloadError: ''
     }
   },
   props: {
@@ -145,6 +100,9 @@ export default {
   created() {
     this.editQuote = { ...this.quote }
     this.imagePresent = this.editQuote.imageURL !== ""
+    if (!this.imagePresent) {
+      this.getImageURLS()
+    }
   },
   computed: {
     showTags: {
@@ -153,6 +111,13 @@ export default {
       },
       set(str) {
         this.editQuote.tags = str.replace(/\s/g, '').split(',')
+      }
+    }
+  },
+  watch: {
+    imagePresent() {
+      if (!this.imagePresent) {
+        this.getImageURLS()
       }
     }
   },
@@ -205,20 +170,20 @@ export default {
       task.on('state_changed', snapshot => {
         this.updateProgressBar(task.snapshot)
       }, error => {
-        this.uploadError = error
+        this.uploadError = error.message
       }, () => {
         task.snapshot.ref.getDownloadURL().then(downloadURL => {
           this.editQuote.imageURL = downloadURL
         })
       })
     },
-    async uploadFile (file, progress, error, option) {
+    async uploadFile(file, progress, error, option) {
       const storageRef = firebase.storage().ref(file.name)
       const task = storageRef.put(file)
       return await task.on('state_changed', snapshot => {
         progress((task.snapshot.bytesTransferred / task.snapshot.totalBytes) * 100)
       }, error => {
-        this.uploadError = error
+        this.uploadError = error.message
       }, () => {
         task.snapshot.ref.getDownloadURL().then(downloadURL => {
           this.editQuote.imageURL = downloadURL
@@ -227,6 +192,34 @@ export default {
     },
     updateProgressBar(snapshot) {
       this.uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+    },
+    getImageURLS() {
+      let urlsList = []
+      // Create a reference under which you want to list
+      const listRef = firebase.storage().ref('/')
+      
+      // Find all the prefixes and items.
+      listRef.listAll().then(res => {
+        res.prefixes.forEach(folderRef => {
+          // All the prefixes under listRef.
+          // You may call listAll() recursively on them.
+          console.log("wao", folderRef.listAll())
+        })
+        res.items.forEach(itemRef => {
+          // All the items under listRef.
+          itemRef.getDownloadURL().then(url => {
+            urlsList.push(url)
+          })
+        })
+        this.uploadedImages = urlsList
+      }).catch(error => {
+        // Uh-oh, an error occurred!
+        this.downloadError = error.message
+      });
+    },
+    setImage(i) {
+      this.editQuote.imageURL = i
+      this.imagePresent = true
     }
   }
 }
@@ -240,8 +233,10 @@ export default {
   right: 0;
   border-color: #68D391;
 }
-.toggle-checkbox:checked + .toggle-label {
+
+.toggle-checkbox:checked+.toggle-label {
   @apply: bg-green-400;
   background-color: #68D391;
 }
+
 </style>
