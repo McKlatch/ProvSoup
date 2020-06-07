@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap pt-4">
+  <div class="flex">
     <editor :quote="quote" class="w-full" />
   </div>
 </template>
