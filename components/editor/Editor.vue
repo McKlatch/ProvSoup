@@ -1,7 +1,9 @@
 <template>
-  <FormulateForm @submit="update">
+  <FormulateForm @submit="update" class="container mx-auto">
+    <!-- main form - 2 columns -->
     <div class="flex flex-wrap">
-      <div class="w-full md:w-1/2">
+      <!-- left column -->
+      <div class="w-full sm:w-1/2">
         <div v-if="!imagePresent" class="mb-6">
           <FormulateInput type="image" name="image" label="Select an image to upload" help="Select a png or jpg to upload (1080px x 1080p)" validation="mime:image/jpeg,image/png" :uploader="uploadFile" :error="uploadError" />
           <div class="flex flex-wrap">
@@ -25,24 +27,26 @@
         <FormulateInput v-model="editQuote.text" type="textarea" name="text" label="Proverb Text" placeholder="Always do your best..." help="Punctuation must match image" validation="required" />
         <FormulateInput v-model="editQuote.contributor" type="text" name="contributor" label="Proverb Author/Contributor" placeholder="Your Name" help="Sample help text" validation="required" />
       </div>
-      <div class="w-full md:w-1/2">
+      <!-- right column -->
+      <div class="w-full sm:w-1/2">
         <FormulateInput v-model="editQuote.id" type="text" name="id" label="Proverb ID/Shorthand/Slug" help="This can NOT be changed later" validation="required" :disabled="!isNew" />
         <FormulateInput v-model="editQuote.citation" type="text" name="citation" label="Proverb source/citation" placeholder="e.g. Book/Film Title" />
         <FormulateInput v-model="showTags" type="textarea" name="text" label="Tags" placeholder="Tag1, Tag2, Tag3" help="Comma separated, list 8-30 tags" />
       </div>
     </div>
-    </div>
+    <!-- button row - below main form -->
     <div class="flex">
-      <div class="w-1/3 mb-6">
+      <!-- checkbox switch -->
+      <div class="mb-6 flex-1">
         <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in my-1">
           <input v-model="editQuote.published" type="checkbox" name="published" id="published" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
           <label for="published" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
         </div>
         <label for="published" class="font-medium">Live?</label>
       </div>
-      <FormulateInput type="submit" :name="isNew ? 'Submit' : 'Update'" class="w-1/3" />
-      <FormulateInput v-if="!isNew" @click="remove" type="button" label="Delete" class="w-1/3" />
-      <FormulateInput v-else @click="forgetImage" type="button" label="Forget" class="w-1/3" />
+      <FormulateInput type="submit" :name="isNew ? 'Submit' : 'Update'" class="flex-1" />
+      <FormulateInput v-if="!isNew" @click="remove" type="button" label="Delete" class="flex-1" />
+      <FormulateInput v-else @click="forgetImage" type="button" label="Forget" class="flex-1" />
     </div>
   </FormulateForm>
 </template>
