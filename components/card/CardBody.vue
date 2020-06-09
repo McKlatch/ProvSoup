@@ -26,7 +26,7 @@ export default {
         contributor: 'proverb contributor',
         id: 'NotLoaded',
         created: new firebase.firestore.Timestamp(),
-        imageURL: 'image URL',
+        imageURL: '',
         citation: 'proverb citation',
         text: 'proverb text',
         published: true,
@@ -41,8 +41,8 @@ export default {
   },
   computed: {
     displayImgURL() {
-      if (this.quote.id === "NotLoaded") {
-        return require(`~/assets/img/quotes/${this.quote.id}.gif`)
+      if (this.quote.imageURL === '') {
+        return require(`~/assets/img/quotes/NotLoaded.gif`)
       }
       return this.quote.imageURL
     }

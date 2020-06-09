@@ -26,7 +26,7 @@ export default {
         contributor: 'proverb contributor',
         id: 'NotLoaded',
         created: new firebase.firestore.Timestamp(),
-        imageURL: 'image URL',
+        imageURL: '',
         citation: 'proverb citation',
         text: 'proverb text',
         published: true,
