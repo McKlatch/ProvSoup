@@ -48,6 +48,12 @@
       <FormulateInput v-if="!isNew" @click="remove" type="button" label="Delete" class="flex-1" />
       <FormulateInput v-else @click="forgetImage" type="button" label="Forget" class="flex-1" />
     </div>
+    <!-- previews -->
+    <div class="flex">
+      <Card :quote="editQuote" />
+      <TweetPreview :quote="editQuote" />
+      <InstaPreview :quote="editQuote" />
+    </div>
   </FormulateForm>
 </template>
 <script>
