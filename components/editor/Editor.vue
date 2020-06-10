@@ -197,6 +197,7 @@ export default {
       }, () => {
         task.snapshot.ref.getDownloadURL().then(downloadURL => {
           this.editQuote.imageURL = downloadURL
+          this.imagePresent = true
         })
       })
     },
