@@ -1,12 +1,36 @@
 <template>
-  <card :quote="quote" class="absolute inset-0" />
+  <div class="container mx-auto absolute inset-0 flex">
+    <div class="hidden md:flex md:items-center md:justify-center md:inline-block md:flex-1">
+      <div class="">
+        <i v-if="soupContext.earliest" @click="$router.push(`/${soupContext.earliest}`)" class="las la-angle-double-left" style="color:#777;font-style:normal;font-size:32px;"></i>
+      </div>
+    </div>
+    <div class="hidden md:flex md:items-center md:justify-center md:inline-block md:flex-1">
+      <div class="">
+        <i v-if="soupContext.last" @click="$router.push(`/${soupContext.last}`)" class="las la-angle-left" style="color:#777;font-style:normal;font-size:32px;"></i>
+      </div>
+    </div>
+    <div class="flex items-center justify-center inline-block flex-auto md:flex-2">
+      <card :quote="quote" class="" />
+    </div>
+    <div class="hidden md:flex md:items-center md:justify-center md:inline-block md:flex-1">
+      <div class="">
+        <i v-if="soupContext.next" @click="$router.push(`/${soupContext.next}`)" class="las la-angle-right" style="color:#777;font-style:normal;font-size:32px;"></i>
+      </div>
+    </div>
+    <div class="hidden md:flex md:items-center md:justify-center md:inline-block md:flex-1">
+      <div class="">
+        <i v-if="soupContext.latest" @click="$router.push(`/${soupContext.latest}`)" class="las la-angle-double-right" style="color:#777;font-style:normal;font-size:32px;"></i>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 
 export default {
-  validate ({ params }) {
+  validate({ params }) {
     // Must be a number
     return /^[A-Z].*/.test(params.label)
   },
@@ -39,7 +63,7 @@ export default {
         { hid: 'twitter:description', name: 'twitter:description', content: `"${this.quote.text}" and other beneficial sayings worth repeating and sharing in real life (or Online). Timeless proverbs, captivating imagery, curated.` },
         { hid: 'twitter:image', name: 'twitter:image', content: this.quote.imageURL },
         // awin verification
-        { hid: 'verification', name: 'verification', content: 'ebb237a3e04660f87928beda0252d2b8'}
+        { hid: 'verification', name: 'verification', content: 'ebb237a3e04660f87928beda0252d2b8' }
       ]
     }
   },
@@ -55,6 +79,12 @@ export default {
         text: 'proverb text',
         published: true,
         edited: new firebase.firestore.Timestamp()
+      },
+      soupContext: {
+        earliest: '',
+        last: '',
+        next: '',
+        latest: ''
       }
     }
   },
@@ -63,6 +93,15 @@ export default {
     if (!this.quote.published) {
       this.$router.push('/')
     }
+    const quotesArray = this.$store.getters.quotes
+    const quotesTarget = quotesArray.findIndex(x => x.id === this.quote.id)
+    this.soupContext = {
+      earliest: quotesArray[0].id != this.quote.id ? quotesArray[0].id : '',
+      last: quotesArray[quotesTarget - 1] ? quotesArray[quotesTarget - 1].id : '',
+      next: quotesArray[quotesTarget + 1] ? quotesArray[quotesTarget + 1].id : '',
+      latest: quotesArray[quotesArray.length - 1].id != this.quote.id ? quotesArray[quotesArray.length - 1].id : ''
+    }
   }
 }
+
 </script>

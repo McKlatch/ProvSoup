@@ -97,5 +97,24 @@ export const getters = {
   },
   quotesCount(state, getters) {
     return getters.quotes.length
+  },
+  getSoupContextByLabel: (state, getters) => label => {
+    const array = getters.quotes.sort(quote => quote.created)
+    const target = array.findIndex(x => x.id === label)
+
+    const earliest = array[0].id
+    const latest = array[array.length - 1].id
+
+    console.log(target - 1, target + 1)
+
+    let last// = array[target - 1].id
+    let next// = array[target + 1].id
+    
+    return {
+      earliest,
+      last,
+      next,
+      latest
+    }
   }
 }
