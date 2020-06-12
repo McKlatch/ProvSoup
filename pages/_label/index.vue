@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="flex items-center justify-center inline-block flex-auto md:flex-2">
-      <card :quote="quote" class="" />
+      <card v-touch:swipe="swipeHandler" :quote="quote" />
     </div>
     <div class="hidden md:flex md:items-center md:justify-center md:inline-block md:flex-1">
       <div class="">
@@ -85,6 +85,16 @@ export default {
         last: '',
         next: '',
         latest: ''
+      }
+    }
+  },
+  methods: {
+    swipeHandler (direction) {
+      if (direction == 'left' && this.soupContext.next != '') {
+        this.$router.push(`/${this.soupContext.next}`)
+      }
+      if (direction == 'right' && this.soupContext.last != '') {
+        this.$router.push(`/${this.soupContext.last}`)
       }
     }
   },

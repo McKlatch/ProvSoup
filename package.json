@@ -18,7 +18,8 @@
     "firebase": "^7.14.4",
     "js-cookie": "^2.2.1",
     "jwt-decode": "^2.2.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vue2-touch-events": "^2.2.1"
   },
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",

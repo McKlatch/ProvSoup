@@ -39,7 +39,8 @@ export default {
   */
   plugins: [
     '~/plugins/firebase.js',
-    '~/plugins/vueformulate.js'
+    '~/plugins/vueformulate.js',
+    '~/plugins/vue2touchevents.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -92,5 +93,10 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+
+  server: {
+    port: 8000, // default: 3000
+    host: '0.0.0.0' // default: localhost
   }
 }
