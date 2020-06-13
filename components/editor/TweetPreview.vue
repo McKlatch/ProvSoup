@@ -1,5 +1,5 @@
 <template>
-  <div @click="copyText" class="w-full md:w-2/3 lg:w-1/3 border-l-2 border-r-2 bg-white hover:opacity-50 p-2">
+  <div @click="copyText" class="border-2 bg-white hover:opacity-50 p-2">
     <p ref="copyTweet" class="">
       "{{ quote.text }}" - {{ quote.contributor }}<br>
       <span class="text-blue-400">#{{ showTags }}</span>

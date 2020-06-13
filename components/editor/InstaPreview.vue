@@ -1,5 +1,5 @@
 <template>
-  <div @click="copyText" class="w-full md:w-2/3 lg:w-1/3 border-l-2 border-r-2 bg-white hover:opacity-50">
+  <div @click="copyText" class="border-2 bg-white hover:opacity-50">
     <img :src="quote.imageURL">
     <img src="~/assets/img/previews/InstaBar.jpg">
     <div class="p-2 text-sm">

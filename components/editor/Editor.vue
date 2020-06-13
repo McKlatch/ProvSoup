@@ -31,7 +31,8 @@
       <div class="w-full sm:w-1/2">
         <FormulateInput v-model="editQuote.id" type="text" name="id" label="Proverb ID/Shorthand/Slug" help="This can NOT be changed later" validation="required" :disabled="!isNew" />
         <FormulateInput v-model="editQuote.citation" type="text" name="citation" label="Proverb source/citation" placeholder="e.g. Book/Film Title" />
-        <FormulateInput v-model="showTags" type="textarea" name="text" label="Tags" placeholder="Tag1, Tag2, Tag3" help="Comma separated, list 8-30 tags" />
+        <FormulateInput v-model.trim="showTags" type="textarea" name="text" label="Tags" placeholder="Tag1, Tag2, Tag3" help="Comma separated, list 8-30 tags" />
+        <FormulateInput v-if="editQuote.text.length > 12" @click="fetchTags" type="button" label="Generate Some Tags" />
       </div>
     </div>
     <!-- button row - below main form -->
@@ -49,10 +50,10 @@
       <FormulateInput v-else @click="forgetImage" type="button" label="Forget" class="flex-1" />
     </div>
     <!-- previews -->
-    <div class="flex">
-      <Card :quote="editQuote" />
-      <TweetPreview :quote="editQuote" />
-      <InstaPreview :quote="editQuote" />
+    <div class="flex flex-wrap">
+      <Card :quote="editQuote" class="w-full md:w-2/3 lg:w-1/3 mb-auto" />
+      <TweetPreview :quote="editQuote" class="w-full md:w-2/3 lg:w-1/3 mb-auto" />
+      <InstaPreview :quote="editQuote" class="w-full md:w-2/3 lg:w-1/3 mb-auto" />
     </div>
   </FormulateForm>
 </template>
@@ -116,12 +117,25 @@ export default {
   },
   computed: {
     showTags: {
+      // for display in textarea ui
       get() {
         return this.editQuote.tags.join(', ')
       },
       set(str) {
         this.editQuote.tags = str.replace(/\s/g, '').split(',')
       }
+    },
+    sendString() {
+      // for sending to hashtag generator api
+      let words = this.editQuote.text
+      let wordsLen = words.length
+
+      while (wordsLen > 1000) {
+        words = words.substring(0, words.lastIndexOf(' '))
+        wordsLen = words.length
+      }
+      
+      return escape(words)
     }
   },
   watch: {
@@ -231,6 +245,21 @@ export default {
     setImage(i) {
       this.editQuote.imageURL = i
       this.imagePresent = true
+    },
+    async fetchTags() {
+      let suggestTags = []
+      await this.$axios.$get(`https://api.ritekit.com/v1/stats/hashtag-suggestions?text=${this.sendString}`, {
+        params : {
+          'client_id' : '51c7cf7cc59743391a6f4fc4387d7aca48e28b400ca2'
+        }
+      })
+        .then(response => {
+          response.data.forEach(suggestion => {
+            suggestTags.push(suggestion.hashtag)
+          })
+          this.editQuote.tags = (this.editQuote.tags.concat(suggestTags))
+        })
+        .catch(error => console.log('error: ' + error))
     }
   }
 }
