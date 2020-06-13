@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-sm rounded overflow-hidden shadow-md pointer-events-auto">
+    <div class="rounded overflow-hidden shadow-md pointer-events-auto">
       <card-top :quote="quote" />
       <card-body :quote="quote" />
       <card-bottom :quote="quote" />

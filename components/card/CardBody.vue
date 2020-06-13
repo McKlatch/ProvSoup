@@ -3,7 +3,7 @@
     <image-modal :show="showModal" @close="showModal = false" >
       <img class="h-full object-contain" :src="displayImgURL" :alt="`&quot;${quote.text}&quot; - ${quote.contributor}`">
     </image-modal>
-    <img class="w-full" :src="displayImgURL" :alt="`&quot;${quote.text}&quot; - ${quote.contributor}`" @click="showModal = true">
+    <img class="w-full object-contain" :src="displayImgURL" :alt="`&quot;${quote.text}&quot; - ${quote.contributor}`" @click="showModal = true">
   </div>
 </template>
 

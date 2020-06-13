@@ -1,24 +1,22 @@
 <template>
   <div>
-  <div class="flex items-center bg-gray-100">
-  <form @submit.prevent="toTopResult" class="w-full max-w-sm">
-    <div class="flex-auto">
-      <input autofocus v-model="searchValue" class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none font-body" type="text" :placeholder="'🔎 ' + quote.text" aria-label="Search" title="Search">
+    <div class="flex items-center bg-gray-100">
+      <form @submit.prevent="toTopResult" class="w-full">
+        <div class="flex-auto">
+          <input autofocus v-model="searchValue" class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none font-body" type="text" :placeholder="'🔎 ' + quote.text" aria-label="Search" title="Search">
+        </div>
+      </form>
+      <nuxt-link :to="'/' + randomQuoteLabel" class="flex-auto">
+        <button class="bg-gray-300 hover:bg-gray-400 sm:text-lg md:text-2xl px-2 pt-2 rounded-tr" title="Random Proverb">
+          <i class="las la-random" style="color:#777;font-style:normal;font-size:32px;"></i>
+        </button>
+      </nuxt-link>
     </div>
-  </form>
-  <nuxt-link :to="'/' + randomQuoteLabel" class="flex-auto">
-      <button class="bg-gray-300 hover:bg-gray-400 sm:text-lg md:text-2xl py-1 px-2 rounded-tr" title="Random Proverb">
-        <i class="las la-random" style="color:#777;font-style:normal;"></i>
-      </button>
-    </nuxt-link>
-    
+    <results-display :suggests="suggests" />
   </div>
-  <results-display :suggests="suggests" />
-</div>
 </template>
-
 <script>
-  import * as firebase from 'firebase/app'
+import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 
 import ResultsDisplay from '~/components/card/search/Results'
@@ -91,10 +89,11 @@ export default {
     ResultsDisplay
   }
 }
-</script>
 
+</script>
 <style>
-  .suggestHL {
-    background:#ffc600;
-  }
+.suggestHL {
+  background: #ffc600;
+}
+
 </style>

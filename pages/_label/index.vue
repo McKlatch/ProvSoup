@@ -1,25 +1,25 @@
 <template>
-  <div class="container mx-auto absolute inset-0 flex">
+  <div class="mx-auto absolute inset-0 flex pointer-events-none">
     <div class="hidden md:flex md:items-center md:justify-center md:inline-block md:flex-1">
-      <div class="">
+      <div class="pointer-events-auto cursor-pointer">
         <i v-if="soupContext.earliest" @click="$router.push(`/${soupContext.earliest}`)" class="las la-angle-double-left" style="color:#777;font-style:normal;font-size:32px;"></i>
       </div>
     </div>
     <div class="hidden md:flex md:items-center md:justify-center md:inline-block md:flex-1">
-      <div class="">
+      <div class="pointer-events-auto cursor-pointer">
         <i v-if="soupContext.last" @click="$router.push(`/${soupContext.last}`)" class="las la-angle-left" style="color:#777;font-style:normal;font-size:32px;"></i>
       </div>
     </div>
-    <div class="flex items-center justify-center inline-block flex-auto md:flex-2">
+    <div class="flex items-center justify-center inline-block flex-auto md:flex-2 md:max-w-lg">
       <card v-touch:swipe="swipeHandler" :quote="quote" />
     </div>
     <div class="hidden md:flex md:items-center md:justify-center md:inline-block md:flex-1">
-      <div class="">
+      <div class="pointer-events-auto cursor-pointer">
         <i v-if="soupContext.next" @click="$router.push(`/${soupContext.next}`)" class="las la-angle-right" style="color:#777;font-style:normal;font-size:32px;"></i>
       </div>
     </div>
     <div class="hidden md:flex md:items-center md:justify-center md:inline-block md:flex-1">
-      <div class="">
+      <div class="pointer-events-auto cursor-pointer">
         <i v-if="soupContext.latest" @click="$router.push(`/${soupContext.latest}`)" class="las la-angle-double-right" style="color:#777;font-style:normal;font-size:32px;"></i>
       </div>
     </div>
