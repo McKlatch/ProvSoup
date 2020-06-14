@@ -31,7 +31,7 @@
       <div class="w-full sm:w-1/2">
         <FormulateInput v-model="editQuote.id" type="text" name="id" label="Proverb ID/Shorthand/Slug" help="This can NOT be changed later" validation="required" :disabled="!isNew" />
         <FormulateInput v-model="editQuote.citation" type="text" name="citation" label="Proverb source/citation" placeholder="e.g. Book/Film Title" />
-        <FormulateInput v-model.trim="showTags" type="textarea" name="text" label="Tags" placeholder="Tag1, Tag2, Tag3" help="Comma separated, list 8-30 tags" />
+        <FormulateInput v-model.trim="showTags" type="textarea" name="text" label="Tags" placeholder="Tag1, Tag2, Tag3" :help="`Comma separated, list 8-30 tags. [${editQuote.tags.length}]`" />
         <FormulateInput v-if="editQuote.text.length > 12" @click="fetchTags" type="button" label="Generate Some Tags" />
       </div>
     </div>
