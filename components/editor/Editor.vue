@@ -6,7 +6,7 @@
       <div class="w-full sm:w-1/2">
         <div v-if="!imagePresent" class="mb-6">
           <FormulateInput type="image" name="image" label="Select an image to upload" help="Select a png or jpg to upload (1080px x 1080p)" validation="mime:image/jpeg,image/png" :uploader="uploadFile" :error="uploadError" />
-          <div class="flex flex-wrap">
+          <!-- <div class="flex flex-wrap">
             <div class="flex flex-wrap">
               <div class="flex flex-wrap w-1/2">
               <img v-for="image in uploadedImages" @click="selectImage = image" :key="image" :src="image" width="40" height="40" class="hover:opacity-50">
@@ -17,7 +17,7 @@
                 <FormulateInput v-if="selectImage" @click="setImage(selectImage)" type="button" label="Confirm" />
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <div v-if="imagePresent" class="mb-6">
           <label for="imageSample" class="font-medium">Image</label>
@@ -81,8 +81,8 @@ export default {
       uploadProgress: 0,
       uploadError: '',
       imagePresent: false,
-      uploadedImages: [],
-      selectImage: '',
+      // uploadedImages: [],
+      // selectImage: '',
       downloadError: ''
     }
   },
@@ -111,9 +111,9 @@ export default {
   created() {
     this.editQuote = { ...this.quote }
     this.imagePresent = this.editQuote.imageURL !== ""
-    if (!this.imagePresent) {
-      this.getImageURLS()
-    }
+    // if (!this.imagePresent) {
+    //   this.getImageURLS()
+    // }
   },
   computed: {
     showTags: {
@@ -138,13 +138,13 @@ export default {
       return escape(words)
     }
   },
-  watch: {
-    imagePresent() {
-      if (!this.imagePresent) {
-        this.getImageURLS()
-      }
-    }
-  },
+  // watch: {
+  //   imagePresent() {
+  //     if (!this.imagePresent) {
+  //       this.getImageURLS()
+  //     }
+  //   }
+  // },
   methods: {
     update() {
       if (!this.isNew) {
@@ -218,34 +218,34 @@ export default {
     updateProgressBar(snapshot) {
       this.uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
     },
-    getImageURLS() {
-      let urlsList = []
-      // Create a reference under which you want to list
-      const listRef = firebase.storage().ref('/')
+    // getImageURLS() {
+    //   let urlsList = []
+    //   // Create a reference under which you want to list
+    //   const listRef = firebase.storage().ref('/')
       
-      // Find all the prefixes and items.
-      listRef.listAll().then(res => {
-        res.prefixes.forEach(folderRef => {
-          // All the prefixes under listRef.
-          // You may call listAll() recursively on them.
-          console.log("wao", folderRef.listAll())
-        })
-        res.items.forEach(itemRef => {
-          // All the items under listRef.
-          itemRef.getDownloadURL().then(url => {
-            urlsList.push(url)
-          })
-        })
-        this.uploadedImages = urlsList
-      }).catch(error => {
-        // Uh-oh, an error occurred!
-        this.downloadError = error.message
-      });
-    },
-    setImage(i) {
-      this.editQuote.imageURL = i
-      this.imagePresent = true
-    },
+    //   // Find all the prefixes and items.
+    //   listRef.listAll().then(res => {
+    //     res.prefixes.forEach(folderRef => {
+    //       // All the prefixes under listRef.
+    //       // You may call listAll() recursively on them.
+    //       console.log("wao", folderRef.listAll())
+    //     })
+    //     res.items.forEach(itemRef => {
+    //       // All the items under listRef.
+    //       itemRef.getDownloadURL().then(url => {
+    //         urlsList.push(url)
+    //       })
+    //     })
+    //     this.uploadedImages = urlsList
+    //   }).catch(error => {
+    //     // Uh-oh, an error occurred!
+    //     this.downloadError = error.message
+    //   });
+    // },
+    // setImage(i) {
+    //   this.editQuote.imageURL = i
+    //   this.imagePresent = true
+    // },
     async fetchTags() {
       let suggestTags = []
       await this.$axios.$get(`https://api.ritekit.com/v1/stats/hashtag-suggestions?text=${this.sendString}`, {
