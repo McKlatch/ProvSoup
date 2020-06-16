@@ -1,4 +1,5 @@
-import axios from 'axios'
+import * as firebase from 'firebase/app'
+import 'firebase/firestore'
 
 require('dotenv').config()
 
@@ -72,16 +73,31 @@ export default {
    */
   generate: {
     dir: 'public',
-    routes () {
-      return axios.get('https://firestore.googleapis.com/v1/projects/provsoup/databases/(default)/documents/quotes')
-        .then((res) => {
-          let routeNames = []
-          res.data.documents.forEach(quote => {
-            routeNames.push(`/${quote.id}`)
-            routeNames.push(`/admin/${quote.id}`)
-          })
-          return routeNames
+    async routes () {
+      let app = null
+      if (!firebase.apps.length) {
+        app = firebase.initializeApp({
+          apiKey: process.env.NUXT_ENV_FB_APIKEY,
+          authDomain: process.env.NUXT_ENV_FB_AUTHDOMAIN,
+          databaseURL: process.env.NUXT_ENV_FB_DATABASEURL,
+          projectId: process.env.NUXT_ENV_FB_PROJECTID,
+          storageBucket: process.env.NUXT_ENV_FB_STORAGEBUCKET,
+          messagingSenderId: process.env.NUXT_ENV_FB_MESSAGINGSENDERID,
+          appId: process.env.NUXT_ENV_FB_APPID,
+          measurementId: process.env.NUXT_ENV_FB_MEASUREMENTID
         })
+      }
+      const idQuery = await firebase.firestore().collection('quotes').orderBy('created').get()
+      .then((res) => {
+        const idArray = []
+        res.forEach((doc) => {
+          idArray.push(`/${doc.data().id}`)
+          idArray.push(`/admin/${doc.data().id}`)
+        })
+        return idArray
+      })
+      .catch(e => context.error(e))
+      return idQuery
     }
   },
   
