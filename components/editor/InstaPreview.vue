@@ -43,7 +43,6 @@ export default {
   },
   methods: {
     async copyText() {
-      // navigator.clipboard.writeText(this.$refs.copyThis.innerText)
       try {
         await this.$copyText(this.$refs.copyThis.innerText);
       } catch (e) {
