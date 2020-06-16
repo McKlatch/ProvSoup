@@ -1,6 +1,20 @@
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 
+let app = null
+if (!firebase.apps.length) {
+  app = firebase.initializeApp({
+    apiKey: process.env.NUXT_ENV_FB_APIKEY,
+    authDomain: process.env.NUXT_ENV_FB_AUTHDOMAIN,
+    databaseURL: process.env.NUXT_ENV_FB_DATABASEURL,
+    projectId: process.env.NUXT_ENV_FB_PROJECTID,
+    storageBucket: process.env.NUXT_ENV_FB_STORAGEBUCKET,
+    messagingSenderId: process.env.NUXT_ENV_FB_MESSAGINGSENDERID,
+    appId: process.env.NUXT_ENV_FB_APPID,
+    measurementId: process.env.NUXT_ENV_FB_MEASUREMENTID
+  })
+}
+
 require('dotenv').config()
 
 export default {
@@ -74,30 +88,16 @@ export default {
   generate: {
     dir: 'public',
     async routes () {
-      let app = null
-      if (!firebase.apps.length) {
-        app = firebase.initializeApp({
-          apiKey: process.env.NUXT_ENV_FB_APIKEY,
-          authDomain: process.env.NUXT_ENV_FB_AUTHDOMAIN,
-          databaseURL: process.env.NUXT_ENV_FB_DATABASEURL,
-          projectId: process.env.NUXT_ENV_FB_PROJECTID,
-          storageBucket: process.env.NUXT_ENV_FB_STORAGEBUCKET,
-          messagingSenderId: process.env.NUXT_ENV_FB_MESSAGINGSENDERID,
-          appId: process.env.NUXT_ENV_FB_APPID,
-          measurementId: process.env.NUXT_ENV_FB_MEASUREMENTID
-        })
-      }
-      const idQuery = await firebase.firestore().collection('quotes').orderBy('created').get()
+      const idArray = []
+      const idQuery = await app.firestore().collection('quotes').get()
       .then((res) => {
-        const idArray = []
         res.forEach((doc) => {
-          idArray.push(`/${doc.data().id}`)
-          idArray.push(`/admin/${doc.data().id}`)
+          idArray.push(`/${doc.id}`)
+          idArray.push(`/admin/${doc.id}`)
         })
-        return idArray
       })
       .catch(e => context.error(e))
-      return idQuery
+      return idArray
     }
   },
   
