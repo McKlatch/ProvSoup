@@ -69,7 +69,7 @@ export default {
         if (user) {
           this.loggedIn = true
           firebase.auth().currentUser.getIdToken(true).then(token => {
-            Cookies.set('access_token', token)
+            Cookies.set('access_token', token, { sameSite: 'lax', secure: true })
           })
         } else {
           this.loggedIn = false
