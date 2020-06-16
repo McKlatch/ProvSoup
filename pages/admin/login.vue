@@ -16,11 +16,11 @@
     <button class="bg-indigo-600 hover:bg-blue-700 text-white font-light py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="submit">
       LOGIN
     </button>
-    <a class="inline-block align-baseline font-light text-sm text-indigo-600 hover:text-indigo-500" href="#">
+    <!-- <a class="inline-block align-baseline font-light text-sm text-indigo-600 hover:text-indigo-500" href="#">
       Forgot Password?
-    </a>
+    </a> -->
   </div>
-  <p v-if="!error" class="text-center text-md font-light">Don't have an account? <a class="font-light text-md text-indigo-600">Create</a></p>
+  <!-- <p v-if="!error" class="text-center text-md font-light">Don't have an account? <a class="font-light text-md text-indigo-600">Create</a></p> -->
   <p v-if="error" class="text-center text-md font-light">{{error.message}}</p>
 </form>
   </div>
