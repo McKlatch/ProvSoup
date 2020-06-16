@@ -75,8 +75,10 @@ export default {
     routes () {
       return axios.get('https://firestore.googleapis.com/v1/projects/provsoup/databases/(default)/documents/quotes')
         .then((res) => {
-          return res.data.map((quote) => {
-            return '/' + quote.id
+          let routeNames = []
+          res.date.forEach(quote => {
+            routeNames.push(`/${quote.id}`)
+            routeNames.push(`/admin/${quote.id}`)
           })
         })
     }
