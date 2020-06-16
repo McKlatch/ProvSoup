@@ -25,14 +25,15 @@
           <div class="text-xs text-gray-700">Click to replace</div>
         </div>
         <FormulateInput v-model="editQuote.text" type="textarea" name="text" label="Proverb Text" placeholder="Always do your best..." help="Punctuation must match image" validation="required" />
-        <FormulateInput v-model="editQuote.contributor" type="text" name="contributor" label="Proverb Author/Contributor" placeholder="Your Name" help="Sample help text" validation="required" />
+        <FormulateInput v-model="editQuote.contributor" type="text" name="contributor" label="Proverb Author/Contributor" placeholder="Your Name" help="Who said this" validation="required" />
       </div>
       <!-- right column -->
       <div class="w-full sm:w-1/2">
-        <FormulateInput v-model="editQuote.id" type="text" name="id" label="Proverb ID/Shorthand/Slug" help="This can NOT be changed later" validation="required" :disabled="!isNew" />
-        <FormulateInput v-model="editQuote.citation" type="text" name="citation" label="Proverb source/citation" placeholder="e.g. Book/Film Title" />
+        <FormulateInput v-model="editQuote.id" type="text" name="id" label="Proverb ID/Shorthand/Slug" help="4 words in CamelCase - This can NOT be changed later" validation="required" :disabled="!isNew" />
+        <FormulateInput v-model="editQuote.citation" type="text" name="citation" label="Proverb source/citation" placeholder="e.g. Book/Film Title" help="where there is evidence for this contributor stating this proverb" />
         <FormulateInput v-model.trim="showTags" type="textarea" name="text" label="Tags" placeholder="Tag1, Tag2, Tag3" :help="`Comma separated, list 8-30 tags. [${editQuote.tags.length}]`" />
         <FormulateInput v-if="editQuote.text.length > 12" @click="fetchTags" type="button" label="Generate Some Tags" />
+        <p v-if="fetchTagsError">{{ fetchTagsError }}</p>
       </div>
     </div>
     <!-- button row - below main form -->
@@ -45,15 +46,16 @@
         </div>
         <label for="published" class="font-medium">Live?</label>
       </div>
-      <FormulateInput type="submit" :name="isNew ? 'Submit' : 'Update'" class="flex-1" />
-      <FormulateInput v-if="!isNew" @click="remove" type="button" label="Delete" class="flex-1" />
-      <FormulateInput v-else @click="forgetImage" type="button" label="Forget" class="flex-1" />
+      <FormulateInput type="submit" :name="isNew ? 'Submit' : 'Update'" class="float-right" />
+      <FormulateInput v-if="!isNew" @click="remove" type="button" label="Delete" class="float-right" />
+      <FormulateInput v-else @click="forgetImage" type="button" label="Forget" class="float-right" />
     </div>
     <!-- previews -->
-    <div class="flex flex-wrap">
-      <Card :quote="editQuote" class="w-full md:w-2/3 lg:w-1/3 mb-auto" />
-      <TweetPreview :quote="editQuote" class="w-full md:w-2/3 lg:w-1/3 mb-auto" />
-      <InstaPreview :quote="editQuote" class="w-full md:w-2/3 lg:w-1/3 mb-auto" />
+    <p @click="showPreviews = !showPreviews" class="text-xs text-gray-700">{{ showPreviews ? "Hide" : "Show"}} Previews<span v-if="showPreviews"> - Click to copy text for social media</span></p>
+    <div v-if="showPreviews" class="flex flex-wrap">
+      <Card :quote="editQuote" class="w-64 mb-auto" />
+      <TweetPreview :quote="editQuote" class="w-64 mb-auto" />
+      <InstaPreview :quote="editQuote" class="w-64 mb-auto" />
     </div>
   </FormulateForm>
 </template>
@@ -83,7 +85,9 @@ export default {
       imagePresent: false,
       // uploadedImages: [],
       // selectImage: '',
-      downloadError: ''
+      // downloadError: '',
+      fetchTagsError: '',
+      showPreviews: false
     }
   },
   props: {
@@ -259,7 +263,7 @@ export default {
           })
           this.editQuote.tags = (this.editQuote.tags.concat(suggestTags))
         })
-        .catch(error => console.log('error: ' + error))
+        .catch(error => this.fetchTagsError = error)
     }
   }
 }
