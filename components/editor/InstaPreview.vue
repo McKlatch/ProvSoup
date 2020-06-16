@@ -42,8 +42,13 @@ export default {
     }
   },
   methods: {
-    copyText() {
-      navigator.clipboard.writeText(this.$refs.copyThis.innerText)
+    async copyText() {
+      // navigator.clipboard.writeText(this.$refs.copyThis.innerText)
+      try {
+        await this.$copyText(this.$refs.copyThis.innerText);
+      } catch (e) {
+        console.error(e);
+      }
     }
   }
 }

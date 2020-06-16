@@ -49,8 +49,12 @@ export default {
     }
   },
   methods: {
-    copyText() {
-      navigator.clipboard.writeText(this.$refs.copyTweet.innerText)
+    async copyText() {
+      try {
+        await this.$copyText(this.$refs.copyTweet.innerText);
+      } catch (e) {
+        console.error(e);
+      }
     }
   }
 }

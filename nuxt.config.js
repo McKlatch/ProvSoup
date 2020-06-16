@@ -56,6 +56,7 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
+    'nuxt-clipboard2'
   ],
 
   axios: {
