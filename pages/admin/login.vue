@@ -5,7 +5,7 @@
 <form @submit.prevent="submitPressed">
   <div class="mb-4">
     <label class="block text-md font-light mb-2" for="email">Email</label>
-    <input v-model="email" class="w-full bg-drabya-gray border-gray-500 appearance-none border p-4 font-light leading-tight focus:outline-none focus:shadow-outline" type="text" name="email" id="" placeholder="Email">
+    <input v-model="email" v-focus class="w-full bg-drabya-gray border-gray-500 appearance-none border p-4 font-light leading-tight focus:outline-none focus:shadow-outline" type="text" name="email" id="" placeholder="Email">
   </div>
   <div class="mb-4">
     <label class="block text-md font-light mb-2" for="password">Password</label>

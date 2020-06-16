@@ -38,6 +38,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/directives.js',
     '~/plugins/firebase.js',
     '~/plugins/vueformulate.js',
     '~/plugins/vue2touchevents.js'
