@@ -1,6 +1,8 @@
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 
+require('dotenv').config()
+
 let app = null
 if (!firebase.apps.length) {
   app = firebase.initializeApp({
@@ -14,8 +16,6 @@ if (!firebase.apps.length) {
     measurementId: process.env.NUXT_ENV_FB_MEASUREMENTID
   })
 }
-
-require('dotenv').config()
 
 export default {
   mode: 'universal',
@@ -87,13 +87,14 @@ export default {
    */
   generate: {
     dir: 'public',
-    async routes () {
-      const idArray = []
-      const idQuery = await app.firestore().collection('quotes').get()
-      .then((res) => {
-        res.forEach((doc) => {
-          idArray.push(`/${doc.id}`)
-          idArray.push(`/admin/${doc.id}`)
+    routes () {
+      let idArray = []
+      let quotesRef = app.firestore().collection('quotes')
+      let idQuery = quotesRef.get()
+      .then(snapshot => {
+        snapshot .forEach(doc => {
+          idArray.push(`/${doc.data().id}`)
+          idArray.push(`/admin/${doc.data().id}`)
         })
       })
       .catch(e => context.error(e))
