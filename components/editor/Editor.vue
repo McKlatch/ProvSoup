@@ -250,7 +250,7 @@ export default {
       let suggestTags = []
       await this.$axios.$get(`https://api.ritekit.com/v1/stats/hashtag-suggestions?text=${this.sendString}`, {
         params : {
-          'client_id' : '51c7cf7cc59743391a6f4fc4387d7aca48e28b400ca2'
+          'client_id' : process.env.NUXT_ENV_RK_CLIENTID
         }
       })
         .then(response => {
