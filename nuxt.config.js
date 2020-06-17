@@ -87,10 +87,10 @@ export default {
    */
   generate: {
     dir: 'public',
-    routes () {
+    async routes () {
       let idArray = []
       let quotesRef = app.firestore().collection('quotes')
-      let idQuery = quotesRef.get()
+      let idQuery = await quotesRef.get()
       .then(snapshot => {
         snapshot .forEach(doc => {
           idArray.push(`/${doc.data().id}`)
