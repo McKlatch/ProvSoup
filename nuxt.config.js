@@ -99,7 +99,8 @@ export default {
         return idArray
       })
       .catch(e => context.error(e))
-    }
+    },
+    interval: 100
   },
   
   /*
