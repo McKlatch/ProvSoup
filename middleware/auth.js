@@ -40,9 +40,11 @@ export default function(context) {
       console.log('firebase.auth() no current user')
       context.redirect('/admin/login')
     }
-    if (!user && !context.store.getters['token/verifyToken']) {
+    if (!context.store.getters['token/verifyToken']) {
       console.log('verifytoken: false ' + context.store.getters.getToken)
       context.redirect('/admin/login')
     }
   })
+  // redirect all (temporary)
+  context.redirect('/admin/login')
 }
