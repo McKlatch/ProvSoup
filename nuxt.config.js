@@ -1,7 +1,9 @@
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 
-require('dotenv').config()
+if (process.env.NODE_ENV !== 'production') { 
+  require('dotenv').config()
+}
 
 let app = null
 if (!firebase.apps.length) {
