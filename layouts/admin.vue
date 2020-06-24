@@ -46,7 +46,7 @@
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 
-// import Cookies from 'js-cookie'
+import Cookies from 'js-cookie'
 
 import Logo from '~/components/Logo'
 import Social from '~/components/Social'
@@ -69,13 +69,13 @@ export default {
         if (user) {
           this.loggedIn = true
           firebase.auth().currentUser.getIdToken(true).then(token => {
-            // Cookies.set('access_token', token, { secure: true })
-            this.$store.commit('token/setToken', token)
+            Cookies.set('access_token', token, { secure: true })
+            // this.$store.commit('token/setToken', token)
           })
         } else {
           this.loggedIn = false
-          // Cookies.remove('access_token')
-          this.$store.commit('token/removeToken')
+          Cookies.remove('access_token')
+          // this.$store.commit('token/removeToken')
         }
       })
     }
