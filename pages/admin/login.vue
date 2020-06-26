@@ -3,22 +3,32 @@
     <div class="max-w-sm rounded overflow-hidden shadow-md pointer-events-auto p-4 bg-gray-200">
       <!-- component -->
 <form @submit.prevent="submitPressed">
-  <div class="mb-4">
-    <label class="block text-md font-light mb-2" for="email">Email</label>
-    <input v-model="email" v-focus class="w-full bg-drabya-gray border-gray-500 appearance-none border p-4 font-light leading-tight focus:outline-none focus:shadow-outline" type="text" name="email" id="" placeholder="Email">
+  <!-- email field -->
+  <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white mb-6">
+    <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
+      <p>
+        <label for="email" class="rounded-t bg-gray-200 text-gray-700 px-1">Email</label>
+      </p>
+    </div>
+    <p>
+      <input v-model="email" v-focus id="email" autocomplete="false" tabindex="0" type="text" placeholder="your@email.address" class="-mb-1 py-1 px-1 text-gray-900 outlineblock h-full w-full" required>
+    </p>
   </div>
-  <div class="mb-4">
-    <label class="block text-md font-light mb-2" for="password">Password</label>
-    <input v-model="password" class="w-full bg-drabya-gray border-gray-500 appearance-none border p-4 font-light leading-tight focus:outline-none focus:shadow-outline" type="password" name="password" id="" placeholder="Password">
+  <!-- password field -->
+  <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
+    <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
+      <p>
+        <label for="password" class="rounded-t bg-gray-200 text-gray-700 px-1">Password</label>
+      </p>
+    </div>
+    <p>
+      <input v-model="password" id="password" autocomplete="false" tabindex="0" type="password" placeholder="*******" class="-mb-1 py-1 px-1 text-gray-900 outlineblock h-full w-full" required>
+    </p>
   </div>
-
-  <div class="flex items-center justify-between mb-5">
-    <button class="bg-teal-500 hover:bg-blue-700 text-white font-light py-2 px-6 rounded focus:outline-none focus:shadow-outline mx-auto" type="submit">
+  <div class="flex items-center justify-between mb-3 -mt-1">
+    <button class="bg-teal-500 hover:bg-teal-700 text-white font-light py-2 px-6 rounded focus:outline-none focus:shadow-outline mx-auto" type="submit">
       Login
     </button>
-    <!-- <a class="inline-block align-baseline font-light text-sm text-teal-600 hover:text-teal-500" href="#">
-      Forgot Password?
-    </a> -->
   </div>
   <p v-if="!error" class="text-sm text-center text-gray-700">This website uses cookies, only after login.</p>
   <p v-if="error" class="text-sm text-center text-red-700">{{error.message}}</p>
