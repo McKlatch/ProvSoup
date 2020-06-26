@@ -20,16 +20,21 @@ function getUserFromCookie(req) {
   }
 }
 
+function redirectToLogin(context) {
+  context.store.dispatch('redirect/setPath', context.route.path)
+  context.redirect('/admin/login')
+}
+
 export default function(context) {
   if (process.server) {
     const user = getUserFromCookie(context.req)
     if (!user) {
-      context.redirect('/admin/login')
+      redirectToLogin(context)
     }
   } else {
     let user = firebase.auth().currentUser
     if (!user) {
-      context.redirect('/admin/login')
+      redirectToLogin(context)
     }
   }
 }
