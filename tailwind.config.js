@@ -11,6 +11,8 @@ module.exports = {
       'body': ['Muli', '-apple-system', 'BlinkMacSystemFont']
     }
   },
-  variants: {},
+  variants: {
+    borderColor: ['responsive', 'hover', 'focus', 'focus-within']
+  },
   plugins: []
 }

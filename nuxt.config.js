@@ -57,7 +57,6 @@ export default {
   plugins: [
     '~/plugins/directives.js',
     '~/plugins/firebase.js',
-    '~/plugins/vueformulate.js',
     '~/plugins/vue2touchevents.js'
   ],
   /*

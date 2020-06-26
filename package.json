@@ -11,7 +11,6 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@braid/vue-formulate": "^2.3.6",
     "@nuxt/components": "^0.3.3",
     "@nuxtjs/axios": "^5.8.0",
     "@nuxtjs/dotenv": "^1.4.1",

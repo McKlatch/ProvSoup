@@ -3,64 +3,149 @@
     <!-- main form - 2 columns -->
     <div class="flex flex-wrap">
       <!-- left column -->
-      <div class="w-full sm:w-1/2">
+      <div class="w-full sm:w-1/2 px-2">
         <div v-if="!imagePresent" class="mb-6">
-          <FormulateInput type="image" name="image" label="Select an image to upload" help="Select a png or jpg to upload (1080px x 1080p)" validation="mime:image/jpeg,image/png" :uploader="uploadFile" :error="uploadError" />
-          <!-- <div class="flex flex-wrap">
-            <div class="flex flex-wrap">
-              <div class="flex flex-wrap w-1/2">
-              <img v-for="image in uploadedImages" @click="selectImage = image" :key="image" :src="image" width="40" height="40" class="hover:opacity-50">
-              </div>
-              <div class="w-1/2">
-                <img v-if="selectImage" :src="selectImage" width="200" height="200">
-                <p v-if="downloadError">{{ downloadError }}</p>
-                <FormulateInput v-if="selectImage" @click="setImage(selectImage)" type="button" label="Confirm" />
-              </div>
+          <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
+            <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
+              <p>
+                <label for="image" class="rounded-t bg-gray-200 text-gray-700 px-1">Image</label>
+              </p>
             </div>
-          </div> -->
+            <p>
+              <input @change="uploadFileOld" id="image" type='file' accept="image/png,image/jpeg" />
+            </p>
+            <span class="bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Select a png or jpg to upload (1080px x 1080px)</span>
+            <span v-show="uploadError" class="bg-gray-200 rounded px-1 text-xs text-red-700 float-right">{{ uploadError }}</span>
+          </div>
         </div>
         <div v-if="imagePresent" class="mb-6">
-          <label for="imageSample" class="font-medium">Image</label>
-          <img @click="imagePresent = false" :src="editQuote.imageURL" :alt="editQuote.imageURL" width="100" height="100" name="imageSample" class="my-1 hover:opacity-50">
-          <div class="text-xs text-gray-700">Click to replace</div>
+          <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
+            <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
+              <p>
+                <label for="imageSample" class="rounded-t bg-gray-200 text-gray-700 px-1">Image</label>
+              </p>
+            </div>
+            <img @click="imagePresent = false" :src="editQuote.imageURL" :alt="editQuote.imageURL" width="100" height="100" name="imageSample" class="my-1 hover:opacity-50">
+            <span class="bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Click to replace</span>
+          </div>
         </div>
-        <FormulateInput v-model="editQuote.text" type="textarea" name="text" label="Proverb Text" placeholder="Always do your best..." help="Punctuation must match image" validation="required" />
-        <FormulateInput v-model="editQuote.contributor" type="text" name="contributor" label="Proverb Author/Contributor" placeholder="Your Name" help="Who said this" validation="required" />
+        <!-- text field -->
+        <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
+          <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
+            <p>
+              <label for="text" class="rounded-t bg-gray-200 text-gray-700 px-1">Proverb Text</label>
+            </p>
+          </div>
+          <p>
+            <textarea v-model="editQuote.text" id="text" autocomplete="false" tabindex="0" placeholder="Always do your best..." class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" rows="2" required></textarea>
+          </p>
+          <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Punctuation must match image</span>
+        </div>
+        <!-- author field -->
+        <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
+          <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
+            <p>
+              <label for="contributor" class="rounded-t bg-gray-200 text-gray-700 px-1">Proverb Author/Contributor</label>
+            </p>
+          </div>
+          <p>
+            <input v-model="editQuote.contributor" id="contributor" autocomplete="false" tabindex="0" type="text" placeholder="Name" class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" required>
+          </p>
+          <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Who said/wrote this</span>
+        </div>
       </div>
       <!-- right column -->
-      <div class="w-full sm:w-1/2">
-        <FormulateInput v-model="editQuote.id" type="text" name="id" label="Proverb ID/Shorthand/Slug" help="4 words in CamelCase - This can NOT be changed later" validation="required" :disabled="!isNew" />
-        <FormulateInput v-model="editQuote.citation" type="text" name="citation" label="Proverb source/citation" placeholder="e.g. Book/Film Title" help="where there is evidence for this contributor stating this proverb" />
-        <FormulateInput v-model.trim="showTags" type="textarea" name="text" label="Tags" placeholder="Tag1, Tag2, Tag3" :help="`Comma separated, list 8-30 tags. [${editQuote.tags.length}]`" />
-        <FormulateInput v-if="editQuote.text.length > 12" @click="fetchTags" type="button" label="Generate Some Tags" />
-        <p v-if="fetchTagsError">{{ fetchTagsError }}</p>
-      </div>
-    </div>
-    <!-- button row - below main form -->
-    <div class="flex">
-      <!-- checkbox switch -->
-      <div class="mb-6 flex-1">
+      <div class="w-full sm:w-1/2 px-2">
+        <!-- id field -->
+        <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
+          <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
+            <p>
+              <label for="id" class="rounded-t bg-gray-200 text-gray-700 px-1">Proverb ID/Shorthand/Slug</label>
+            </p>
+          </div>
+          <p>
+            <input v-model="editQuote.id" id="id" autocomplete="false" tabindex="0" type="text" placeholder="Always do your best..." class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" rows="2" required :disabled="!isNew">
+          </p>
+          <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">4 words in CamelCase - This can NOT be changed later</span>
+        </div>
+        <!-- citation field -->
+        <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
+          <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
+            <p>
+              <label for="citation" class="rounded-t bg-gray-200 text-gray-700 px-1">Proverb source/citation</label>
+            </p>
+          </div>
+          <p>
+            <input v-model="editQuote.citation" id="citation" autocomplete="false" tabindex="0" type="text" placeholder="e.g. Book/Film Title" class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full">
+          </p>
+          <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Where there is evidence for this contributor stating this proverb</span>
+        </div>
+        <!-- tags field -->
+        <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
+          <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
+            <p>
+              <label for="tags" class="rounded-t bg-gray-200 text-gray-700 px-1">Tags</label><span v-if="editQuote.text.length > 12" @click="fetchTags" class="bg-teal-300 px-1 cursor-pointer"><i class="las la-magic"></i></span><span v-if="fetchTagsError" class="text-teal-500">{{ fetchTagsError }}</span>
+            </p>
+          </div>
+          <p>
+            <textarea v-model.trim="showTags" id="tags" autocomplete="false" tabindex="0" placeholder="Tag1, Tag2, Tag3" class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" rows="3" required></textarea>
+          </p>
+          <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Comma separated, list 8-30 tags. [{{ editQuote.tags.length }}]</span>
+        </div>
+        <!-- checkbox switch -->
+      <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
+        
+        <!-- <label for="published" class="font-medium">Live?</label> -->
+        <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
+          <p>
+            <label for="published" class="rounded-t bg-gray-200 text-gray-700 px-1">live</label>
+          </p>
+        </div>
+        <p>
         <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in my-1">
           <input v-model="editQuote.published" type="checkbox" name="published" id="published" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
           <label for="published" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
         </div>
-        <label for="published" class="font-medium">Live?</label>
+      </p>
+      <span class="bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Toggle to publish/unpublish</span>
       </div>
-      <FormulateInput type="submit" :name="isNew ? 'Submit' : 'Update'" class="float-right" />
-      <FormulateInput v-if="!isNew" @click="remove" type="button" label="Delete" class="float-right" />
-      <FormulateInput v-else @click="forgetImage" type="button" label="Forget" class="float-right" />
+      </div>
+    </div>
+    <!-- button row - below main form -->
+    <div class="flex border-t pt-3 px-2">
+      <!-- preview toggles -->
+      <div class="flex-1 flex">
+      <p v-if="!cardPreview" @click="cardPreview = !cardPreview" class="text-5xl -mt-4 text-gray-500"><i class="las la-share-alt-square"></i></p>
+      <p v-else @click="cardPreview = !cardPreview" class="text-5xl -mt-4 text-teal-500"><i class="las la-share-alt-square"></i></p>
+      <p v-if="!tweetPreview" @click="tweetPreview = !tweetPreview" class="text-5xl -mt-4 text-gray-500"><i class="lab la-twitter"></i></p>
+      <p v-else @click="tweetPreview = !tweetPreview" class="text-5xl -mt-4 text-teal-500"><i class="lab la-twitter"></i></p>
+      <p v-if="!instaPreview" @click="instaPreview = !instaPreview" class="text-5xl -mt-4 text-gray-500"><i class="lab la-instagram"></i></p>
+      <p v-else @click="instaPreview = !instaPreview" class="text-5xl -mt-4 text-teal-500"><i class="lab la-instagram"></i></p>
+      </div>
+      <!-- submit button -->
+      <button type="submit" class="rounded text-blue-100 h-10 px-3 py-1 bg-blue-500 hover:shadow-inner hover:bg-blue-700 transition-all duration-300 float-right">
+        {{ isNew ? 'Submit' : 'Update' }}
+      </button>
+      <!-- remove button -->
+      <button v-if="!isNew" type="button" @click="remove" class="rounded text-red-500 h-10 px-3 py-1 border border-red-500 hover:shadow-inner hover:bg-red-700 hover:text-red-100 transition-all duration-300 float-right">
+        Delete
+      </button>
+      <!-- forget button -->
+      <button v-if="isNew" type="button" @click="forgetImage" class="rounded text-red-500 h-10 px-3 py-1 border border-red-500 hover:shadow-inner hover:bg-red-700 hover:text-red-100 transition-all duration-300 float-right">
+        Forget
+      </button>
     </div>
     <!-- previews -->
-    <p @click="showPreviews = !showPreviews" class="text-xs text-gray-700">{{ showPreviews ? "Hide" : "Show"}} Previews<span v-if="showPreviews"> - Click to copy text for social media</span></p>
+    <p v-if="tweetPreview || instaPreview" class="text-xs text-gray-700">Click to copy text for social media</p>
     <div v-if="showPreviews" class="flex flex-wrap">
-      <Card :quote="editQuote" class="w-64 mb-auto" />
-      <TweetPreview :quote="editQuote" class="w-64 mb-auto" />
-      <InstaPreview :quote="editQuote" class="w-64 mb-auto" />
+      <Card v-if="cardPreview" :quote="editQuote" class="w-64 sm:w-5/12 mb-auto" />
+      <TweetPreview v-if="tweetPreview" :quote="editQuote" class="w-64 sm:w-5/12 mb-auto" />
+      <InstaPreview v-if="instaPreview" :quote="editQuote" class="w-64 sm:w-5/12 mb-auto" />
     </div>
   </FormulateForm>
 </template>
 <script>
-import '@/assets/css/snow.min.css'
+// import '@/assets/css/snow.min.css'
 
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
@@ -83,11 +168,10 @@ export default {
       uploadProgress: 0,
       uploadError: '',
       imagePresent: false,
-      // uploadedImages: [],
-      // selectImage: '',
-      // downloadError: '',
       fetchTagsError: '',
-      showPreviews: false
+      cardPreview: false,
+      tweetPreview: false,
+      instaPreview: false
     }
   },
   props: {
@@ -115,9 +199,6 @@ export default {
   created() {
     this.editQuote = { ...this.quote }
     this.imagePresent = this.editQuote.imageURL !== ""
-    // if (!this.imagePresent) {
-    //   this.getImageURLS()
-    // }
   },
   computed: {
     showTags: {
@@ -140,15 +221,11 @@ export default {
       }
       
       return escape(words)
+    },
+    showPreviews() {
+      return this.cardPreview || this.tweetPreview || this.instaPreview
     }
   },
-  // watch: {
-  //   imagePresent() {
-  //     if (!this.imagePresent) {
-  //       this.getImageURLS()
-  //     }
-  //   }
-  // },
   methods: {
     update() {
       if (!this.isNew) {
@@ -202,10 +279,11 @@ export default {
       }, () => {
         task.snapshot.ref.getDownloadURL().then(downloadURL => {
           this.editQuote.imageURL = downloadURL
+          this.imagePresent = true
         })
       })
     },
-    async uploadFile(file, progress, error, option) {
+    async uploadFile(file, progress, error, option) { // this was made for vueformulate input (not good with tailwindcss)
       const storageRef = firebase.storage().ref(file.name)
       const task = storageRef.put(file)
       return await task.on('state_changed', snapshot => {
@@ -222,34 +300,6 @@ export default {
     updateProgressBar(snapshot) {
       this.uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
     },
-    // getImageURLS() {
-    //   let urlsList = []
-    //   // Create a reference under which you want to list
-    //   const listRef = firebase.storage().ref('/')
-      
-    //   // Find all the prefixes and items.
-    //   listRef.listAll().then(res => {
-    //     res.prefixes.forEach(folderRef => {
-    //       // All the prefixes under listRef.
-    //       // You may call listAll() recursively on them.
-    //       console.log("wao", folderRef.listAll())
-    //     })
-    //     res.items.forEach(itemRef => {
-    //       // All the items under listRef.
-    //       itemRef.getDownloadURL().then(url => {
-    //         urlsList.push(url)
-    //       })
-    //     })
-    //     this.uploadedImages = urlsList
-    //   }).catch(error => {
-    //     // Uh-oh, an error occurred!
-    //     this.downloadError = error.message
-    //   });
-    // },
-    // setImage(i) {
-    //   this.editQuote.imageURL = i
-    //   this.imagePresent = true
-    // },
     async fetchTags() {
       let suggestTags = []
       await this.$axios.$get(`https://api.ritekit.com/v1/stats/hashtag-suggestions?text=${this.sendString}`, {

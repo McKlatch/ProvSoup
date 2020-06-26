@@ -8,7 +8,7 @@ import 'firebase/firestore'
 export default {
   head() {
     return {
-      title: `Proverbial Soup · ${this.quote.proverb}`,
+      title: `Proverbial Soup · ${this.quote.proverb || 'Beneficial · Timeless · Wholesome'}`,
       meta: [
         // standard meta
         { hid: 'description', name: 'description', content: `

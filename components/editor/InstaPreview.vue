@@ -7,7 +7,7 @@
     ·<br>
     ·<br>
     ·<br>
-    ____sS___<br>
+    ____sS__<br>
     `-.,____,.-'<br>
     <span class="text-blue-900">#{{ showTags }}</span></span><br>
     <span class="text-gray-500 text-xs">1 day ago</span>
