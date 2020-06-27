@@ -1,5 +1,5 @@
 <template>
-  <FormulateForm @submit="update" class="container mx-auto">
+  <form @submit="update" class="container mx-auto">
     <!-- main form - 2 columns -->
     <div class="flex flex-wrap">
       <!-- left column -->
@@ -115,12 +115,12 @@
     <div class="flex border-t pt-3 px-2">
       <!-- preview toggles -->
       <div class="flex-1 flex">
-      <p v-if="!cardPreview" @click="cardPreview = !cardPreview" class="text-5xl -mt-4 text-gray-500"><i class="las la-share-alt-square"></i></p>
-      <p v-else @click="cardPreview = !cardPreview" class="text-5xl -mt-4 text-teal-500"><i class="las la-share-alt-square"></i></p>
-      <p v-if="!tweetPreview" @click="tweetPreview = !tweetPreview" class="text-5xl -mt-4 text-gray-500"><i class="lab la-twitter"></i></p>
-      <p v-else @click="tweetPreview = !tweetPreview" class="text-5xl -mt-4 text-teal-500"><i class="lab la-twitter"></i></p>
-      <p v-if="!instaPreview" @click="instaPreview = !instaPreview" class="text-5xl -mt-4 text-gray-500"><i class="lab la-instagram"></i></p>
-      <p v-else @click="instaPreview = !instaPreview" class="text-5xl -mt-4 text-teal-500"><i class="lab la-instagram"></i></p>
+      <p v-if="!cardPreview" @click="cardPreview = !cardPreview" class="text-5xl -mt-4 text-gray-500"><i class="las la-share-alt-square" style="font-style:normal;"></i></p>
+      <p v-else @click="cardPreview = !cardPreview" class="text-5xl -mt-4 text-teal-500"><i class="las la-share-alt-square" style="font-style:normal;"></i></p>
+      <p v-if="!tweetPreview" @click="tweetPreview = !tweetPreview" class="text-5xl -mt-4 text-gray-500"><i class="lab la-twitter" style="font-style:normal;"></i></p>
+      <p v-else @click="tweetPreview = !tweetPreview" class="text-5xl -mt-4 text-teal-500"><i class="lab la-twitter" style="font-style:normal;"></i></p>
+      <p v-if="!instaPreview" @click="instaPreview = !instaPreview" class="text-5xl -mt-4 text-gray-500"><i class="lab la-instagram" style="font-style:normal;"></i></p>
+      <p v-else @click="instaPreview = !instaPreview" class="text-5xl -mt-4 text-teal-500"><i class="lab la-instagram" style="font-style:normal;"></i></p>
       </div>
       <!-- submit button -->
       <button type="submit" class="rounded text-blue-100 h-10 px-3 py-1 bg-blue-500 hover:shadow-inner hover:bg-blue-700 transition-all duration-300 float-right">
@@ -142,7 +142,7 @@
       <TweetPreview v-if="tweetPreview" :quote="editQuote" class="w-64 sm:w-5/12 mb-auto" />
       <InstaPreview v-if="instaPreview" :quote="editQuote" class="w-64 sm:w-5/12 mb-auto" />
     </div>
-  </FormulateForm>
+  </form>
 </template>
 <script>
 // import '@/assets/css/snow.min.css'

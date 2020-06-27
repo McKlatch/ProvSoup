@@ -21,7 +21,9 @@ function getUserFromCookie(req) {
 }
 
 function redirectToLogin(context) {
-  context.store.dispatch('redirect/setPath', context.route.path)
+  if (context.params.label) {
+    context.redirect('/admin/login', { d : context.params.label })
+  }
   context.redirect('/admin/login')
 }
 

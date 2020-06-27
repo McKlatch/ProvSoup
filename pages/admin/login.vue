@@ -41,21 +41,36 @@
   import * as firebase from 'firebase/app'
   import 'firebase/auth'
 
+  import Cookies from 'js-cookie'
+
   export default {
     data() {
       return {
         email: '',
         password: '',
-        error: ''
+        error: '',
+        redirect: ''
       }
     },
     methods: {
       submitPressed() {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(data => {
-          this.$router.push('/admin')
+          firebase.auth().currentUser.getIdToken(true).then(token => {
+            Cookies.set('access_token', token, { secure: true })
+          })
+          if (this.redirect != '') {
+            this.$router.push(`/admin/${this.redirect}`)
+          } else {
+            this.$router.push('/admin')
+          }
         }).catch(error => this.error = error)
       }
     },
+    created() {
+      if (this.$route.query.d) {
+        this.redirect = this.$route.query.d
+      }
+    }
     // layout: 'admin'
   }
 </script>
