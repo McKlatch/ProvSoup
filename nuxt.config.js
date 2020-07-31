@@ -57,7 +57,8 @@ export default {
   plugins: [
     '~/plugins/directives.js',
     '~/plugins/firebase.js',
-    '~/plugins/vue2touchevents.js'
+    '~/plugins/vue2touchevents.js',
+    '~/plugins/getcontrast.js'
   ],
   /*
   ** Nuxt.js dev-modules
