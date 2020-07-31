@@ -1,26 +1,24 @@
 <template>
-  <div class="mx-auto absolute inset-0 flex pointer-events-none">
-    <div class="hidden md:flex md:items-center md:justify-center md:inline-block md:flex-1">
-      <div class="pointer-events-auto cursor-pointer">
-        <i v-if="soupContext.earliest" @click="$router.push(`/${soupContext.earliest}`)" class="las la-angle-double-left" style="color:#777;font-style:normal;font-size:32px;"></i>
+  <div class="md:w-10/12 lg:w-8/12 xl:w-1/2 md:mx-auto">
+    <Nav :quote="quote" class="p-2" />
+    <div class="md:hidden">
+      <ProvSquare :quote="quote" v-touch:swipe="swipeHandler" />
+      <Panel :quote="quote" class="p-2" />
+      <AdSquare />
+      <Scroll :quote="quote" class="p-2" />
+      <AdText />
+      <About class="p-2 md:p-0" />
+    </div>
+    <div class="hidden md:flex md:pt-8">
+      <div class="w-3/4">
+        <ProvSquare :quote="quote" v-touch:swipe="swipeHandler" />
+        <Scroll :quote="quote" class="p-2" />
       </div>
-    </div>
-    <div class="hidden md:flex md:items-center md:justify-center md:inline-block md:flex-1">
-      <div class="pointer-events-auto cursor-pointer">
-        <i v-if="soupContext.last" @click="$router.push(`/${soupContext.last}`)" class="las la-angle-left" style="color:#777;font-style:normal;font-size:32px;"></i>
-      </div>
-    </div>
-    <div class="flex items-center justify-center inline-block flex-auto md:flex-2 md:max-w-lg">
-      <card v-touch:swipe="swipeHandler" :quote="quote" />
-    </div>
-    <div class="hidden md:flex md:items-center md:justify-center md:inline-block md:flex-1">
-      <div class="pointer-events-auto cursor-pointer">
-        <i v-if="soupContext.next" @click="$router.push(`/${soupContext.next}`)" class="las la-angle-right" style="color:#777;font-style:normal;font-size:32px;"></i>
-      </div>
-    </div>
-    <div class="hidden md:flex md:items-center md:justify-center md:inline-block md:flex-1">
-      <div class="pointer-events-auto cursor-pointer">
-        <i v-if="soupContext.latest" @click="$router.push(`/${soupContext.latest}`)" class="las la-angle-double-right" style="color:#777;font-style:normal;font-size:32px;"></i>
+      <div class="flex flex-col w-1/4">
+        <AdSquare class="flex-1" />
+        <Panel :quote="quote" class="flex-1 m-auto p-1" />
+        <AdText class="flex-1 m-auto px-2" />
+        <About class="pb-2" />
       </div>
     </div>
   </div>
@@ -89,7 +87,7 @@ export default {
     }
   },
   methods: {
-    swipeHandler (direction) {
+    swipeHandler(direction) {
       if (direction == 'left' && this.soupContext.next != '') {
         this.$router.push(`/${this.soupContext.next}`)
       }
