@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gray-100 pointer-events-auto">
     <input autofocus v-model="searchValue" class="appearance-none bg-transparent border-none w-full text-gray-700 -mx-2 p-1 leading-tight focus:outline-none font-body" type="text" :placeholder="'🔎 ' + quote.text" aria-label="Search" title="Search">
-    <results :suggests="suggests" class="mt-8" />
+    <results :suggests="suggests" class="mt-2 -ml-5 md:-ml-16 lg:-ml-32" />
   </div>
 </template>
 

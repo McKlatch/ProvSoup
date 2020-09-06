@@ -1,10 +1,9 @@
 <template>
-  <div class="flex flex-wrap bg-pink-200 pointer-events-auto">
-    <p class="hidden lg:flex text-center text-xs font-body p-1">&quot;{{quote.text}}&quot; - {{quote.contributor}}</p>
+  <div class="flex flex-wrap pointer-events-auto" id="panelBG">
     <LinkIcon
       v-for="social in socials"
       :quote="quote" :social="social" :key="social"
-      class="flex-1 text-center m-auto" 
+      class="m-auto" 
     />
   </div>
 </template>
@@ -35,8 +34,6 @@ export default {
   },
   data() {
     return {
-      socialIconClass: 'm-2 mt-2',
-      socialIconButton: 'bg-gray-300 hover:bg-gray-400 h-full',
       socials: ['facebook',
         'twitter',
         'tumblr',
@@ -45,7 +42,8 @@ export default {
         'linkedin',
         'reddit',
         'whatsapp',
-        'copylink', 'copyproverb', 'discover']
+        'copylink', 'copyproverb', 'discover'],
+      textColorBW: ''
     }
   },
   computed: {
@@ -79,6 +77,10 @@ export default {
       const pattern = new RegExp('([\d ]*[a-zA-Z]+( \d*:\d*)?)(( - )| )?(((\d* )?[a-zA-Z]+ )?\d*([:-]+\d*)?)') // returns everything :(
       return pattern.test(i)
     }
+  },
+  mounted() {
+    this.textColorBW = document.getElementById("panelBG").style.backgroundColor
+    console.log(document.getElementById("panelBG"))
   },
   components: {
     SocialButton

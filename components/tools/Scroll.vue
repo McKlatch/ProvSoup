@@ -1,5 +1,5 @@
 <template>
-  <div class="flex bg-gray-100 pointer-events-auto">
+  <div class="flex pointer-events-auto">
     <i v-if="soupContext.earliest" @click="$router.push(`/${soupContext.earliest}`)" class="flex-1 las la-angle-double-left cursor-pointer text-center m-auto" title="First"></i>
     <i v-if="soupContext.last" @click="$router.push(`/${soupContext.last}`)" class="flex-1 las la-angle-left cursor-pointer text-center m-auto" title="Previous"></i>
     <i @click="$router.push(`/${randomQuoteLabel}`)" class="flex-1 las la-random cursor-pointer text-center m-auto" title="Random"></i>
@@ -70,6 +70,6 @@ export default {
   i:hover {
     color: #6b46c1;
     font-style: normal;
-    font-size: 34px;
+    font-size: 30px;
   }
 </style>

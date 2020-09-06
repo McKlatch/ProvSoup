@@ -1,8 +1,8 @@
 <template>
   <nav class="flex items-center justify-between flex-wrap bg-gray-100">
-    <div class="flex items-center flex-none text-white mr-2">
+    <div @click="$router.push(`/`)" class="cursor-pointer flex items-center flex-none text-gray-700 hover:text-pink-600 mr-2 font-display text-l">
       <Logo class="fill-current h-8 w-8 mr-2" />
-      <span @click="$router.push(`/`)" class="font-display text-l text-gray-700 cursor-pointer">Proverbial Soup</span>
+      Proverbial Soup
     </div>
       <div class="">
         <a href="https://twitter.com/provsoup" target="_blank" rel="noopener" aria-label="" aria-hidden="true" title="Provsoup on Twitter" class="m-auto mr-2 inline-block">
@@ -76,19 +76,19 @@ i {
 i:hover {
   color: #6b46c1;
   font-style: normal;
-  font-size: 34px;
+  font-size: 30px;
 }
 
 i.twitter:hover {
   color: #55acee;
   font-style: normal;
-  font-size: 34px;
+  font-size: 30px;
 }
 
 i.instagram:hover {
   color: #e1306c;
   font-style: normal;
-  font-size: 34px;
+  font-size: 30px;
 }
 
 </style>

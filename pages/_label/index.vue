@@ -1,6 +1,7 @@
 <template>
   <div class="md:w-10/12 lg:w-8/12 xl:w-1/2 md:mx-auto">
     <Nav :quote="quote" class="p-2" />
+    <!-- Mobile Arrangement -->
     <div class="md:hidden">
       <ProvSquare :quote="quote" v-touch:swipe="swipeHandler" />
       <Panel :quote="quote" class="p-2" />
@@ -9,7 +10,8 @@
       <AdText />
       <About class="p-2 md:p-0" />
     </div>
-    <div class="hidden md:flex md:pt-8">
+    <!-- Desktop Arrangement -->
+    <!-- <div class="hidden md:flex md:pt-8">
       <div class="w-3/4">
         <ProvSquare :quote="quote" v-touch:swipe="swipeHandler" />
         <Scroll :quote="quote" class="p-2" />
@@ -20,6 +22,19 @@
         <AdText class="flex-1 m-auto px-2" />
         <About class="pb-2" />
       </div>
+    </div> -->
+    <!-- Desktop Arrangement -->
+    <div class="hidden md:flex md:pt-1">
+        <ProvSquare class="w-3/4 inline-block" :quote="quote" v-touch:swipe="swipeHandler" />
+        <div class="flex flex-col w-1/4 inline-block">
+          <AdSquare class="flex-1" />
+          <Panel :quote="quote" class="flex-1 m-auto p-1" />
+          <AdText class="flex-1 m-auto px-2" />
+        </div>
+      </div>
+      <div class="hidden md:flex md:mt-2 bg-gray-100">
+        <Scroll :quote="quote" class="w-3/4 p-2" />
+        <About class="w-1/4 pb-2" />
     </div>
   </div>
 </template>

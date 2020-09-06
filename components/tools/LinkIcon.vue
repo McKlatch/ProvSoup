@@ -1,5 +1,5 @@
 <template>
-  <div class="cursor-pointer">
+  <span class="cursor-pointer">
     <a v-if="social == 'facebook'" :href="facebookURL" target="_blank" rel="noopener" aria-label="" aria-hidden="true" title="Share on Facebook">
       <i class="lab la-facebook facebook"></i>
     </a>
@@ -9,7 +9,7 @@
     <a v-if="social == 'tumblr'" :href="tumblrURL" target="_blank" rel="noopener" aria-label="" aria-hidden="true" title="Share on Tumblr">
       <i class="lab la-tumblr tumblr"></i>
     </a>
-    <a v-if="social == 'email'" :href="emailURL" target="_blank" rel="noopener" aria-label="" aria-hidden="true" title="Send by E-Mail">
+    <a v-if="social == 'email'" :href="emailURL" target="_blank" rel="noopener" aria-label="" aria-hidden="true" title="Email This">
       <i class="las la-envelope"></i>
     </a>
     <a v-if="social == 'pinterest'" :href="pinterestURL" target="_blank" rel="noopener" aria-label="" aria-hidden="true" title="Pin This">
@@ -33,7 +33,7 @@
     <a v-if="social == 'discover'" :href="discoverURL" target="_blank" rel="noopener" aria-label="" aria-hidden="true" title="More about this proverb">
       <i class="lab la-readme"></i>
     </a>
-  </div>
+  </span>
 </template>
 <script>
 import * as firebase from 'firebase/app'
@@ -124,41 +124,41 @@ export default {
   i.facebook:hover {
     color: #3b5998;
     font-style: normal;
-    font-size: 34px;
+    font-size: 30px;
   }
   i.twitter:hover {
     color: #55acee;
     font-style: normal;
-    font-size: 34px;
+    font-size: 30px;
   }
   i.tumblr:hover {
     color: #35465C;
     font-style: normal;
-    font-size: 34px;
+    font-size: 30px;
   }
   i:hover {
     color: #6b46c1;
     font-style: normal;
-    font-size: 34px;
+    font-size: 30px;
   }
   i.pinterest:hover {
     color: #bd081c;
     font-style: normal;
-    font-size: 34px;
+    font-size: 30px;
   }
   i.linkedin:hover {
     color: #0077b5;
     font-style: normal;
-    font-size: 34px;
+    font-size: 30px;
   }
   i.reddit:hover {
     color: #FF5700;
     font-style: normal;
-    font-size: 34px;
+    font-size: 30px;
   }
   i.whatsapp:hover {
     color: #25D366;
     font-style: normal;
-    font-size: 34px;
+    font-size: 30px;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <ul class="absolute max-w-sm dropdown leading-tight">
+  <ul class="absolute w-11/12 md:w-1/3 dropdown leading-tight">
     <result-display v-for="result in results" :key="result.label" :label="result.label" :showProverb="result.showProverb" :showOrigin="result.showOrigin" />
   </ul>
 </template>
