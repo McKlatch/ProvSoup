@@ -8,7 +8,7 @@
 export default {
   data () {
     return {
-      link: 'https://instagram.com/mcklatch'
+      link: 'http://j.mp/PSMcKHi'
     }
   }
 }
