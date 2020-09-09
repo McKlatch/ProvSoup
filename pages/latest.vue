@@ -39,9 +39,9 @@ export default {
     }
   },
   created() {
-    const rand = Math.floor(Math.random() * this.$store.getters.quotesCount)
+    const quotesArray = this.$store.getters.quotes
     this.$router.push({
-      path: `/${this.$store.getters.randomQuoteID(rand)}`
+      path: `/${quotesArray[quotesArray.length - 1].id}`
     })
   }
 }
