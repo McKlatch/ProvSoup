@@ -36,7 +36,8 @@ export default {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Merriweather|Muli&display=swap' }
     ],
     script: [
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/fuzzyset.js/0.0.1/fuzzyset.min.js' }
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/fuzzyset.js/0.0.1/fuzzyset.min.js' },
+      { src: 'https://www.dwin2.com/pub.667291.min.js', body: true }
     ],
   },
   /*
