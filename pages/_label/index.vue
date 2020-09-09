@@ -27,9 +27,9 @@
     <div class="hidden md:flex md:pt-1">
         <ProvSquare class="w-3/4 inline-block" :quote="quote" v-touch:swipe="swipeHandler" />
         <div class="flex flex-col w-1/4 inline-block">
-          <AdSquare class="flex-1" />
-          <Panel :quote="quote" class="flex-1 m-auto p-1" />
-          <AdText class="flex-1 m-auto px-2" />
+          <AdSquare class="flex-initial" />
+          <Panel :quote="quote" class="flex-auto m-auto p-1" />
+          <AdText class="flex-auto m-auto px-2" />
         </div>
       </div>
       <div class="hidden md:flex md:mt-2 bg-gray-100">
