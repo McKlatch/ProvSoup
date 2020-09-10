@@ -84,13 +84,13 @@
         <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
           <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
             <p>
-              <label for="tags" class="rounded-t bg-gray-200 text-gray-700 px-1">Tags</label><span v-if="editQuote.text.length > 12" @click="fetchTags" class="bg-teal-300 px-1 cursor-pointer"><i class="las la-magic"></i></span><span v-if="fetchTagsError" class="text-teal-500">{{ fetchTagsError }}</span>
+              <label for="tags" class="rounded-t bg-gray-200 text-gray-700 px-1">Tags [{{ editQuote.tags.length }}]</label><span v-if="editQuote.text.length > 12" @click="fetchTags" class="bg-teal-300 px-1 cursor-pointer"><i class="las la-magic"></i></span><span v-if="fetchTagsError" class="text-teal-500">{{ fetchTagsError }}</span>
             </p>
           </div>
           <p>
             <textarea v-model.trim="showTags" id="tags" autocomplete="false" tabindex="0" placeholder="Tag1, Tag2, Tag3" class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" rows="3" required></textarea>
           </p>
-          <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Comma separated, list 8-30 tags. [{{ editQuote.tags.length }}]</span>
+          <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Space separated, special characters autoremoved, list 8-30 tags.</span>
         </div>
         <!-- checkbox switch -->
       <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
@@ -115,8 +115,6 @@
     <div class="flex border-t pt-3 px-2">
       <!-- preview toggles -->
       <div class="flex-1 flex">
-      <p v-if="!cardPreview" @click="cardPreview = !cardPreview" class="text-5xl -mt-4 text-gray-500"><i class="las la-share-alt-square" style="font-style:normal;"></i></p>
-      <p v-else @click="cardPreview = !cardPreview" class="text-5xl -mt-4 text-teal-500"><i class="las la-share-alt-square" style="font-style:normal;"></i></p>
       <p v-if="!tweetPreview" @click="tweetPreview = !tweetPreview" class="text-5xl -mt-4 text-gray-500"><i class="lab la-twitter" style="font-style:normal;"></i></p>
       <p v-else @click="tweetPreview = !tweetPreview" class="text-5xl -mt-4 text-teal-500"><i class="lab la-twitter" style="font-style:normal;"></i></p>
       <p v-if="!instaPreview" @click="instaPreview = !instaPreview" class="text-5xl -mt-4 text-gray-500"><i class="lab la-instagram" style="font-style:normal;"></i></p>
@@ -138,7 +136,6 @@
     <!-- previews -->
     <p v-if="tweetPreview || instaPreview" class="text-xs text-gray-700">Click to copy text for social media</p>
     <div v-if="showPreviews" class="flex flex-wrap">
-      <Card v-if="cardPreview" :quote="editQuote" class="w-64 sm:w-5/12 mb-auto" />
       <TweetPreview v-if="tweetPreview" :quote="editQuote" class="w-64 sm:w-5/12 mb-auto" />
       <InstaPreview v-if="instaPreview" :quote="editQuote" class="w-64 sm:w-5/12 mb-auto" />
     </div>
@@ -169,7 +166,6 @@ export default {
       uploadError: '',
       imagePresent: false,
       fetchTagsError: '',
-      cardPreview: false,
       tweetPreview: false,
       instaPreview: false
     }
@@ -204,10 +200,10 @@ export default {
     showTags: {
       // for display in textarea ui
       get() {
-        return this.editQuote.tags.join(', ')
+        return this.editQuote.tags.join(' ')
       },
       set(str) {
-        this.editQuote.tags = str.replace(/\s/g, '').split(',')
+        this.editQuote.tags = str.replace(/[!@#$%^&*,.]/g, '').split(' ')
       }
     },
     sendString() {
@@ -223,7 +219,7 @@ export default {
       return escape(words)
     },
     showPreviews() {
-      return this.cardPreview || this.tweetPreview || this.instaPreview
+      return this.tweetPreview || this.instaPreview
     }
   },
   methods: {
