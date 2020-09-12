@@ -75,7 +75,8 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
-    'nuxt-clipboard2'
+    'nuxt-clipboard2',
+    '@nuxtjs/sitemap'
   ],
 
   axios: {
@@ -95,7 +96,7 @@ export default {
       let quotesRef = app.firestore().collection('quotes')
       return quotesRef.get()
       .then(snapshot => {
-        snapshot .forEach(doc => {
+        snapshot.forEach(doc => {
           idArray.push(`/${doc.data().id}`)
           idArray.push(`/admin/${doc.data().id}`)
         })
@@ -124,5 +125,41 @@ export default {
   server: {
     port: process.env.PORT || 8000, // default: 3000
     host: '0.0.0.0' // default: localhost
+  },
+  sitemap: {
+    hostname: 'https://proverbialsoup.com',
+    gzip: true,
+    exclude: [
+      '/admin',
+      '/admin/*',
+      '/admin/**'
+    ],
+    routes () {
+      let idArray = []
+      let quotesRef = app.firestore().collection('quotes')
+      let lastUpdated = new Date('2020-01-01T01:01:01')
+      return quotesRef.get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          const thisUpdated = doc.data().edited.toDate()
+          idArray.push({
+            url: `/${doc.data().id}`,
+            lastmod: `/${thisUpdated}`
+          })
+          if (thisUpdated > lastUpdated)
+          lastUpdated = thisUpdated
+        })
+        idArray.push({
+          url: `/latest`,
+          lastmod: `/${lastUpdated}`
+        },
+        {
+          url: `/`,
+          lastmod: `/${lastUpdated}`
+        })
+        return idArray
+      })
+      .catch(e => console.log(e))
+    }
   }
 }
