@@ -5,9 +5,9 @@
     <div class="md:hidden">
       <ProvSquare :quote="quote" v-touch:swipe="swipeHandler" />
       <Panel :quote="quote" class="p-2" />
-      <AdSquare />
+      <Ad type="mobile" />
       <Scroll :quote="quote" class="p-2" />
-      <AdText />
+      <Ad type="text" />
       <About class="p-2 md:p-0" />
     </div>
     <!-- Desktop Arrangement -->
@@ -27,9 +27,9 @@
     <div class="hidden md:flex md:pt-1">
         <ProvSquare class="w-3/4 inline-block" :quote="quote" v-touch:swipe="swipeHandler" />
         <div class="flex flex-col w-1/4 inline-block">
-          <AdSquare class="flex-initial" />
+          <Ad type="desktop" class="flex-initial" />
           <Panel :quote="quote" class="flex-auto m-auto p-1" />
-          <AdText class="flex-auto m-auto px-2" />
+          <Ad type="text" class="flex-auto m-auto px-2" />
         </div>
       </div>
       <div class="hidden md:flex md:mt-2 bg-gray-100">
