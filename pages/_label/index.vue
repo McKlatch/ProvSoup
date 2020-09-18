@@ -11,25 +11,12 @@
       <About class="p-2 md:p-0" />
     </div>
     <!-- Desktop Arrangement -->
-    <!-- <div class="hidden md:flex md:pt-8">
-      <div class="w-3/4">
-        <ProvSquare :quote="quote" v-touch:swipe="swipeHandler" />
-        <Scroll :quote="quote" class="p-2" />
-      </div>
-      <div class="flex flex-col w-1/4">
-        <AdSquare class="flex-1" />
-        <Panel :quote="quote" class="flex-1 m-auto p-1" />
-        <AdText class="flex-1 m-auto px-2" />
-        <About class="pb-2" />
-      </div>
-    </div> -->
-    <!-- Desktop Arrangement -->
     <div class="hidden md:flex md:pt-1">
         <ProvSquare class="w-3/4 inline-block" :quote="quote" v-touch:swipe="swipeHandler" />
         <div class="flex flex-col w-1/4 inline-block">
           <Ad type="desktop" class="flex-initial" />
-          <Panel :quote="quote" class="flex-auto m-auto p-1" />
-          <Ad type="text" class="flex-auto m-auto px-2" />
+          <Panel :quote="quote" class="flex-1 m-auto p-1" />
+          <Ad type="text" class="flex-1 m-auto" />
         </div>
       </div>
       <div class="hidden md:flex md:mt-2 bg-gray-100">
