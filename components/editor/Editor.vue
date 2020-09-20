@@ -37,19 +37,19 @@
             </p>
           </div>
           <p>
-            <textarea v-model="editQuote.text" id="text" autocomplete="false" tabindex="0" placeholder="Always do your best..." class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" rows="2" required></textarea>
+            <textarea @click="$event.target.select()" v-model="editQuote.text" id="text" autocomplete="false" tabindex="0" placeholder="Always do your best..." class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" rows="2" required></textarea>
           </p>
-          <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Punctuation must match image</span>
+          <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Punctuation should match image</span>
         </div>
         <!-- author field -->
         <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
           <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
             <p>
-              <label for="contributor" class="rounded-t bg-gray-200 text-gray-700 px-1">Proverb Author/Contributor</label>
+              <label for="contributor" class="rounded-t bg-gray-200 text-gray-700 px-1">Proverb Author/Contributor</label><span @click="editQuote.contributor = 'Unknown'" class="bg-teal-300 px-1 cursor-pointer ml-5">Unknown</span>
             </p>
           </div>
           <p>
-            <input v-model="editQuote.contributor" id="contributor" autocomplete="false" tabindex="0" type="text" placeholder="Name" class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" required>
+            <input @click="$event.target.select()" v-model="editQuote.contributor" id="contributor" autocomplete="false" tabindex="0" type="text" placeholder="Name" class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" required>
           </p>
           <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Who said/wrote this</span>
         </div>
@@ -64,7 +64,7 @@
             </p>
           </div>
           <p>
-            <input v-model="editQuote.id" id="id" autocomplete="false" tabindex="0" type="text" placeholder="Always do your best..." class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" rows="2" required :disabled="!isNew">
+            <input @click="$event.target.select()" v-model="editQuote.id" id="id" autocomplete="false" tabindex="0" type="text" placeholder="Always do your best..." class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" rows="2" required :disabled="!isNew">
           </p>
           <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">4 words in CamelCase - This can NOT be changed later</span>
         </div>
@@ -72,11 +72,11 @@
         <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
           <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
             <p>
-              <label for="citation" class="rounded-t bg-gray-200 text-gray-700 px-1">Proverb source/citation</label>
+              <label for="citation" class="rounded-t bg-gray-200 text-gray-700 px-1">Proverb source/citation</label><span @click="editQuote.citation = 'Unknown'" class="bg-teal-300 px-1 cursor-pointer ml-5">Unknown</span>
             </p>
           </div>
           <p>
-            <input v-model="editQuote.citation" id="citation" autocomplete="false" tabindex="0" type="text" placeholder="e.g. Book/Film Title" class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full">
+            <input @click="$event.target.select()" v-model="editQuote.citation" id="citation" autocomplete="false" tabindex="0" type="text" placeholder="e.g. Book/Film Title" class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full">
           </p>
           <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Where there is evidence for this contributor stating this proverb</span>
         </div>
@@ -84,11 +84,11 @@
         <div class="border focus-within:border-blue-500 relative rounded p-1 bg-white my-6">
           <div class="-mt-4 -ml-2 absolute tracking-wider px-1 uppercase text-xs">
             <p>
-              <label for="tags" class="rounded-t bg-gray-200 text-gray-700 px-1">Tags [{{ editQuote.tags.length }}]</label><span v-if="editQuote.text.length > 12" @click="fetchTags" class="bg-teal-300 px-1 cursor-pointer"><i class="las la-magic"></i></span><span v-if="fetchTagsError" class="text-teal-500">{{ fetchTagsError }}</span>
+              <label for="tags" class="rounded-t bg-gray-200 text-gray-700 px-1">Tags [{{ editQuote.tags.length }}]</label><span v-if="editQuote.text.length > 12" @click="fetchTags" class="bg-teal-300 px-1 cursor-pointer ml-5"><i class="las la-magic"></i></span><span v-if="fetchTagsError" class="text-teal-500">{{ fetchTagsError }}</span>
             </p>
           </div>
           <p>
-            <textarea v-model.trim="showTags" id="tags" autocomplete="false" tabindex="0" placeholder="Tag1, Tag2, Tag3" class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" rows="3" required></textarea>
+            <textarea @click="$event.target.select()" v-model.trim="showTags" id="tags" autocomplete="false" tabindex="0" placeholder="Tag1, Tag2, Tag3" class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" rows="3" required></textarea>
           </p>
           <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Space separated, special characters autoremoved, list 8-30 tags.</span>
         </div>
