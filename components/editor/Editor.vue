@@ -25,7 +25,10 @@
                 <label for="imageSample" class="rounded-t bg-gray-200 text-gray-700 px-1">Image</label>
               </p>
             </div>
-            <img @click="imagePresent = false" :src="editQuote.imageURL" :alt="editQuote.imageURL" width="100" height="100" name="imageSample" class="my-1 hover:opacity-50">
+            <div class="flex">
+            <img :src="editQuote.imageURL" :alt="editQuote.imageURL" width="100" height="100" name="imageSample" class="flex-initial my-1">
+            <button type="button" @click="imagePresent = false" class="rounded text-red-500 h-10 px-3 py-1 border border-red-500 hover:shadow-inner hover:bg-red-700 hover:text-red-100 transition-all duration-300">Change Image</button>
+            </div>
             <span class="bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Click to replace</span>
           </div>
         </div>
@@ -88,7 +91,7 @@
             </p>
           </div>
           <p>
-            <textarea @click="$event.target.select()" v-model.trim="showTags" id="tags" autocomplete="false" tabindex="0" placeholder="Tag1, Tag2, Tag3" class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" rows="3" required></textarea>
+            <textarea v-model.trim="showTags" id="tags" autocomplete="false" tabindex="0" placeholder="Tag1, Tag2, Tag3" class="-mb-1 py-1 px-1 text-gray-900 outline-none block h-full w-full" rows="3" required></textarea>
           </p>
           <span class="-mt-3 -mr-1 bg-gray-200 rounded px-1 text-xs text-gray-700 float-right">Space separated, special characters autoremoved, list 8-30 tags.</span>
         </div>
