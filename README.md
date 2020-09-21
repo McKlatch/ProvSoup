@@ -12,7 +12,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/McKlatch/ProvSoup">
-    <img src="static/logo.png" alt="Proverbial Soup" width="315" height="150">
+    <img src="static/logo.png" alt="Proverbial Soup" width="233" height="228">
   </a>
 
   <h3 align="center">Proverbial Soup</h3>
@@ -152,16 +152,16 @@ Project Link: [https://github.com/McKlatch/ProvSoup](https://github.com/McKlatch
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/mcklatch/Best-README-Template.svg?style=flat-square
+[contributors-shield]: https://img.shields.io/github/contributors/mcklatch/ProvSoup.svg?style=flat-square
 [contributors-url]: https://github.com/McKlatch/ProvSoup/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/mcklatch/Best-README-Template.svg?style=flat-square
+[forks-shield]: https://img.shields.io/github/forks/mcklatch/ProvSoup.svg?style=flat-square
 [forks-url]: https://github.com/McKlatch/ProvSoup/network/members
-[stars-shield]: https://img.shields.io/github/stars/mcklatch/Best-README-Template.svg?style=flat-square
+[stars-shield]: https://img.shields.io/github/stars/mcklatch/ProvSoup.svg?style=flat-square
 [stars-url]: https://github.com/McKlatch/ProvSoup/stargazers
-[issues-shield]: https://img.shields.io/github/issues/mcklatch/Best-README-Template.svg?style=flat-square
+[issues-shield]: https://img.shields.io/github/issues/mcklatch/ProvSoup.svg?style=flat-square
 [issues-url]: https://github.com/McKlatch/ProvSoup/issues
-[license-shield]: https://img.shields.io/github/license/mcklatch/Best-README-Template.svg?style=flat-square
-[license-url]: https://github.com/McKlatch/ProvSoup/blob/master/LICENSE.txt
+[license-shield]: https://img.shields.io/github/license/mcklatch/ProvSoup.svg?style=flat-square
+[license-url]: https://img.shields.io/github/license/mcklatch/ProvSoup
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/mcklatch
 [product-screenshot]: static/preview.jpg
