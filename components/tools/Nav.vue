@@ -1,7 +1,7 @@
 <template>
   <nav class="flex items-center justify-between flex-wrap bg-gray-100">
     <div @click="$router.push(`/`)" class="cursor-pointer flex items-center flex-none text-gray-700 hover:text-pink-600 mr-2 font-display text-l">
-      <Logo class="fill-current h-8 w-8 mr-2" />
+      <Logo class="fill-current h-8 w-8 mx-1" />
       Proverbial Soup
     </div>
       <div class="">
@@ -11,9 +11,9 @@
         <a href="https://www.instagram.com/provsoup/" target="_blank" rel="noopener" aria-label="" aria-hidden="true" title="Provsoup on Instagram" class="m-auto mr-2 inline-block">
           <i class="lab la-instagram instagram"></i>
         </a>
-        <div class="md:hidden inline-block">
+        <!-- <div class="md:hidden inline-block">
         <i @click="$router.push(`/${randomQuoteLabel}`)" class="las la-random cursor-pointer text-center m-auto mr-2 inline-block" title="Random Proverb" />
-        </div>
+        </div> -->
         <div class="md:hidden inline-block">
         <i @click="showSearch = !showSearch" class="las la-search cursor-pointer text-center m-auto mr-2 inline-block" title="Search for a Proverb"></i>
         </div>

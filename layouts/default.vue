@@ -31,7 +31,6 @@ export default {
 
 <style>
 #defaultbg {
-  background-color: #f7fafc;
-background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23a8a8a8' fill-opacity='0.28' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: linear-gradient(90deg, rgb(255,255,255) 0%,transparent 78%),repeating-linear-gradient(135deg, rgba(126,126,126, 0.03) 0px, rgba(126,126,126, 0.03) 1px,transparent 1px, transparent 15px),repeating-linear-gradient(45deg, rgba(126,126,126, 0.03) 0px, rgba(126,126,126, 0.03) 1px,transparent 1px, transparent 15px),repeating-linear-gradient(90deg, rgba(126,126,126, 0.03) 0px, rgba(126,126,126, 0.03) 1px,transparent 1px, transparent 15px),linear-gradient(45deg, rgb(255,255,255),rgb(255,255,255));
 }
 </style>

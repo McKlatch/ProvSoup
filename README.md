@@ -65,8 +65,6 @@ Here's why:
 
 Of course, this idea is simple, and has many flaws; in some ways it is just like us, and will continue to grow into something better. This is a learning project for me, and my journey into web-development is happening right here for all to see. Flaws and perfections!
 
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
-
 ### Built With
 
 * [VueJS](https://vuejs.org/)
@@ -134,7 +132,7 @@ All rights reserved. Code exposed for learning purposes only.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@mcklatch](https://twitter.com/mcklatch) - david@mcklatch.com
+David McClatchey - [@mcklatch](https://twitter.com/mcklatch) - david@mcklatch.com
 
 Project Link: [https://github.com/McKlatch/ProvSoup](https://github.com/McKlatch/ProvSoup)
 
@@ -142,7 +140,6 @@ Project Link: [https://github.com/McKlatch/ProvSoup](https://github.com/McKlatch
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-* [Img Shields](https://shields.io)
 * [Line Awesome](https://icons8.com/line-awesome)
 * [Google Fonts](https://fonts.google.com/)
 
