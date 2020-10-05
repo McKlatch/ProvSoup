@@ -40,7 +40,7 @@ export default {
       let tagLen = tags.length
       const quoteLen = this.quote.text.length + 6 // quotes dash and spaces
 
-      while ((tagLen + quoteLen) > 280) {
+      while ((tagLen + quoteLen) > 260) { // max tweetlenght - 20 (botchfix)
         tags = tags.substring(0, tags.lastIndexOf(' #'))
         tagLen = tags.length
       }
