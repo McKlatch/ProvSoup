@@ -11,6 +11,9 @@
         <a href="https://www.instagram.com/provsoup/" target="_blank" rel="noopener" aria-label="" aria-hidden="true" title="Provsoup on Instagram" class="m-auto mr-2 inline-block">
           <i class="lab la-instagram instagram"></i>
         </a>
+        <a href="https://www.facebook.com/provsoup/" target="_blank" rel="noopener" aria-label="" aria-hidden="true" title="Provsoup on Facebook" class="m-auto mr-2 inline-block">
+          <i class="lab la-facebook facebook"></i>
+        </a>
         <!-- <div class="md:hidden inline-block">
         <i @click="$router.push(`/${randomQuoteLabel}`)" class="las la-random cursor-pointer text-center m-auto mr-2 inline-block" title="Random Proverb" />
         </div> -->
@@ -87,6 +90,12 @@ i.twitter:hover {
 
 i.instagram:hover {
   color: #e1306c;
+  font-style: normal;
+  font-size: 30px;
+}
+
+i.facebook:hover {
+  color: #3b5998;
   font-style: normal;
   font-size: 30px;
 }
