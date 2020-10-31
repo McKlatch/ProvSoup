@@ -1,17 +1,19 @@
 <template>
-  <div class="md:w-10/12 lg:w-8/12 xl:w-1/2 md:mx-auto">
-    <Nav :quote="quote" class="p-2" />
-    <!-- Mobile Arrangement -->
-    <div class="md:hidden">
-      <ProvSquare :quote="quote" v-touch:swipe="swipeHandler" />
-      <Panel :quote="quote" class="p-2" />
-      <Ad type="mobile" />
-      <Scroll :quote="quote" class="p-2" />
-      <Ad type="text" />
-      <About class="p-2 md:p-0" />
-    </div>
-    <!-- Desktop Arrangement -->
-    <div class="hidden md:flex md:pt-1">
+  <div>
+    <!-- <div id="contextbg" class="h-screen h-full opacity-75 transition-all bg-no-repeat bg-cover bg-center scale-110 fixed z-10" :style="backgroundImage" /> -->
+    <div class="md:w-10/12 lg:w-8/12 xl:w-1/2 md:mx-auto opacity-100">
+      <Nav :quote="quote" class="p-2" />
+      <!-- Mobile Arrangement -->
+      <div class="md:hidden">
+        <ProvSquare :quote="quote" v-touch:swipe="swipeHandler" />
+        <Panel :quote="quote" class="p-2" />
+        <Ad type="mobile" />
+        <Scroll :quote="quote" class="p-2" />
+        <Ad type="text" />
+        <About class="p-2 md:p-0" />
+      </div>
+      <!-- Desktop Arrangement -->
+      <div class="hidden md:flex md:pt-1">
         <ProvSquare class="w-3/4 inline-block" :quote="quote" v-touch:swipe="swipeHandler" />
         <div class="flex flex-col w-1/4 inline-block">
           <Ad type="desktop" class="flex-initial" />
@@ -22,6 +24,7 @@
       <div class="hidden md:flex md:mt-2 bg-gray-100">
         <Scroll :quote="quote" class="w-3/4 p-2" />
         <About class="w-1/4 pb-2" />
+      </div>
     </div>
   </div>
 </template>
@@ -86,6 +89,11 @@ export default {
         next: '',
         latest: ''
       }
+    }
+  },
+  computed: {
+    backgroundImage() {
+      return `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url("${this.quote.imageURL}"); filter: blur(40px); top: -55% !important; left: -55% !important; width: 210% !important; height: 210% !important;`
     }
   },
   methods: {
