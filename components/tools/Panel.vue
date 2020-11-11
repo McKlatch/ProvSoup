@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap pointer-events-auto" id="panelBG">
+  <div id="panelbg" class="flex flex-wrap pointer-events-auto md:rounded-r-lg">
     <LinkIcon
       v-for="social in socials"
       :quote="quote" :social="social" :key="social"
@@ -78,12 +78,13 @@ export default {
       return pattern.test(i)
     }
   },
-  mounted() {
-    this.textColorBW = document.getElementById("panelBG").style.backgroundColor
-    console.log(document.getElementById("panelBG"))
-  },
   components: {
     SocialButton
   }
 }
 </script>
+<style scoped>
+#panelbg {
+  background-color: #00637E
+}
+</style>

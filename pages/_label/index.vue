@@ -1,8 +1,8 @@
 <template>
   <div>
-    <!-- <div id="contextbg" class="h-screen h-full opacity-75 transition-all bg-no-repeat bg-cover bg-center scale-110 fixed z-10" :style="backgroundImage" /> -->
-    <div class="md:w-10/12 lg:w-8/12 xl:w-1/2 md:mx-auto opacity-100">
-      <Nav :quote="quote" class="p-2" />
+    <div id="contextbg" class="" :style="backgroundImage" />
+    <div id="containfg" class="md:w-10/12 lg:w-8/12 xl:w-1/2 md:mx-auto">
+      <Nav :quote="quote" class="p-2 md:mb-1" />
       <!-- Mobile Arrangement -->
       <div class="md:hidden">
         <ProvSquare :quote="quote" v-touch:swipe="swipeHandler" />
@@ -15,13 +15,13 @@
       <!-- Desktop Arrangement -->
       <div class="hidden md:flex md:pt-1">
         <ProvSquare class="w-3/4 inline-block" :quote="quote" v-touch:swipe="swipeHandler" />
-        <div class="flex flex-col w-1/4 inline-block">
+        <div class="flex flex-col w-1/4">
           <Ad type="desktop" class="flex-initial" />
-          <Panel :quote="quote" class="flex-1 m-auto p-1" />
+          <Panel :quote="quote" class="flex-initial p-1 my-2 md:w-1/2" />
           <Ad type="text" class="flex-1 m-auto" />
         </div>
       </div>
-      <div class="hidden md:flex md:mt-2 bg-gray-100">
+      <div class="hidden md:flex md:mt-2">
         <Scroll :quote="quote" class="w-3/4 p-2" />
         <About class="w-1/4 pb-2" />
       </div>
@@ -93,7 +93,7 @@ export default {
   },
   computed: {
     backgroundImage() {
-      return `background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url("${this.quote.imageURL}"); filter: blur(40px); top: -55% !important; left: -55% !important; width: 210% !important; height: 210% !important;`
+      return `background: url(${this.quote.imageURL}) no-repeat center center fixed;`
     }
   },
   methods: {
@@ -119,7 +119,24 @@ export default {
       next: quotesArray[quotesTarget + 1] ? quotesArray[quotesTarget + 1].id : '',
       latest: quotesArray[quotesArray.length - 1].id != this.quote.id ? quotesArray[quotesArray.length - 1].id : ''
     }
+  },
+  validate({ params, query, store }) {
+    if (params.label.length != 1)
+      return true
   }
 }
 
 </script>
+<style scoped>
+#contextbg {
+  background-color: #FFF;
+  background-size: cover;
+  position: fixed; top: 0; right: 0; bottom: 0; left: 0;
+  filter: blur(40px);
+  transform: scale(1.5);
+}
+#containfg {
+  position: relative;
+  z-index: 2;
+}
+</style>

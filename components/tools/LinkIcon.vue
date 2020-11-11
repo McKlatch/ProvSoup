@@ -117,7 +117,7 @@ export default {
 </script>
 <style>
   i {
-    color: #b83280;
+    color: #EB8970;
     font-style: normal;
     font-size: 30px;
   }
@@ -137,7 +137,7 @@ export default {
     font-size: 30px;
   }
   i:hover {
-    color: #6b46c1;
+    color: #F7BF92;
     font-style: normal;
     font-size: 30px;
   }

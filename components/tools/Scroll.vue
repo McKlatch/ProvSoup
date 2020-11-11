@@ -1,5 +1,5 @@
 <template>
-  <div class="flex pointer-events-auto">
+  <div id="scrollbar" class="flex pointer-events-auto md:rounded-lg shadow-lg">
     <i v-if="soupContext.earliest" @click="$router.push(`/${soupContext.earliest}`)" class="flex-1 las la-angle-double-left cursor-pointer text-center m-auto" title="First"></i>
     <i v-if="soupContext.last" @click="$router.push(`/${soupContext.last}`)" class="flex-1 las la-angle-left cursor-pointer text-center m-auto" title="Previous"></i>
     <i @click="$router.push(`/${randomQuoteLabel}`)" class="flex-1 las la-random cursor-pointer text-center m-auto" title="Random"></i>
@@ -61,15 +61,20 @@ export default {
 }
 
 </script>
-<style>
-  i {
-    color: #777;
-    font-style: normal;
-    font-size: 30px;
-  }
-  i:hover {
-    color: #6b46c1;
-    font-style: normal;
-    font-size: 30px;
-  }
+<style scoped>
+#scrollbar {
+  background-color: #00637E
+}
+
+ i {
+  color: #EB8970;
+  font-style: normal;
+  font-size: 30px;
+}
+
+i:hover {
+  color: #F7BF92;
+  font-style: normal;
+  font-size: 30px;
+}
 </style>

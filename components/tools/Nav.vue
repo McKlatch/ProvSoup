@@ -1,6 +1,6 @@
 <template>
-  <nav class="flex items-center justify-between flex-wrap bg-gray-100">
-    <div @click="$router.push(`/`)" class="cursor-pointer flex items-center flex-none text-gray-700 hover:text-pink-600 mr-2 font-display text-l">
+  <nav id="navbar" class="flex items-center justify-between flex-wrap rounded-lg shadow-lg">
+    <div id="sitename" @click="$router.push(`/`)" class="cursor-pointer flex items-center flex-none mr-2 font-display text-l">
       <Logo class="fill-current h-8 w-8 mx-1" />
       Proverbial Soup
     </div>
@@ -69,15 +69,26 @@ export default {
 }
 
 </script>
-<style>
+<style scoped>
+#navbar {
+  background-color: #00637E
+}
+
+#sitename {
+  color: #EB8970
+}
+#sitename:hover {
+  color: #F7BF92
+}
+
 i {
-  color: #777;
+  color: #EB8970;
   font-style: normal;
   font-size: 30px;
 }
 
 i:hover {
-  color: #6b46c1;
+  color: #F7BF92;
   font-style: normal;
   font-size: 30px;
 }
