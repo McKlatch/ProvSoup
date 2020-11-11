@@ -1,5 +1,5 @@
 <template>
-  <nav id="navbar" class="flex items-center justify-between flex-wrap rounded-lg shadow-lg">
+  <nav id="navbar" class="flex items-center justify-between flex-wrap md:rounded-lg shadow-lg">
     <div id="sitename" @click="$router.push(`/`)" class="cursor-pointer flex items-center flex-none mr-2 font-display text-l">
       <Logo class="fill-current h-8 w-8 mx-1" />
       Proverbial Soup
