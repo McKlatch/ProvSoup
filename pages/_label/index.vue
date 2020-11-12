@@ -17,7 +17,7 @@
         <ProvSquare class="w-3/4 inline-block" :quote="quote" v-touch:swipe="swipeHandler" />
         <div class="flex flex-col w-1/4">
           <Ad type="desktop" class="flex-initial" />
-          <Panel :quote="quote" class="flex-initial p-1 my-2 md:w-1/2" />
+          <Panel :quote="quote" class="flex-initial p-1 my-2 md:w-3/4" />
           <Ad type="text" class="flex-1 m-auto" />
         </div>
       </div>
@@ -133,7 +133,7 @@ export default {
   background-size: cover;
   position: fixed; top: 0; right: 0; bottom: 0; left: 0;
   filter: blur(40px);
-  transform: scale(1.5);
+  transform: scale(2);
 }
 #containfg {
   position: relative;

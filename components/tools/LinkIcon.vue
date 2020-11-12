@@ -30,6 +30,9 @@
     <a v-if="social == 'copyproverb'" @click.prevent="copyProverb" aria-label="" aria-hidden="true" title="Copy Proverb Text">
       <i class="las la-clipboard"></i>
     </a>
+    <a v-if="social == 'download'" :download="quote.id" :href="quote.imageURL" target="_blank" title="Download Image">
+      <i class="las la-download"></i>
+    </a>
     <a v-if="social == 'discover'" :href="discoverURL" target="_blank" rel="noopener" aria-label="" aria-hidden="true" title="More about this proverb">
       <i class="lab la-readme"></i>
     </a>
@@ -122,43 +125,51 @@ export default {
     font-size: 30px;
   }
   i.facebook:hover {
-    color: #3b5998;
+    color: #4e71ba;
     font-style: normal;
     font-size: 30px;
+    transform: scale(1.1);
   }
   i.twitter:hover {
     color: #55acee;
     font-style: normal;
     font-size: 30px;
+    transform: scale(1.1);
   }
   i.tumblr:hover {
     color: #35465C;
     font-style: normal;
     font-size: 30px;
+    transform: scale(1.1);
   }
   i:hover {
     color: #F7BF92;
     font-style: normal;
     font-size: 30px;
+    transform: scale(1.1);
   }
   i.pinterest:hover {
     color: #bd081c;
     font-style: normal;
     font-size: 30px;
+    transform: scale(1.1);
   }
   i.linkedin:hover {
     color: #0077b5;
     font-style: normal;
     font-size: 30px;
+    transform: scale(1.1);
   }
   i.reddit:hover {
     color: #FF5700;
     font-style: normal;
     font-size: 30px;
+    transform: scale(1.1);
   }
   i.whatsapp:hover {
     color: #25D366;
     font-style: normal;
     font-size: 30px;
+    transform: scale(1.1);
   }
 </style>

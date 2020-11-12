@@ -106,7 +106,7 @@ i.instagram:hover {
 }
 
 i.facebook:hover {
-  color: #3b5998;
+  color: #4e71ba;
   font-style: normal;
   font-size: 30px;
 }

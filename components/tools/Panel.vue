@@ -3,7 +3,7 @@
     <LinkIcon
       v-for="social in socials"
       :quote="quote" :social="social" :key="social"
-      class="m-auto" 
+      class="m-auto md:p-1" 
     />
   </div>
 </template>
@@ -42,7 +42,7 @@ export default {
         'linkedin',
         'reddit',
         'whatsapp',
-        'copylink', 'copyproverb', 'discover'],
+        'copylink', 'copyproverb', /*'download',*/ 'discover'],
       textColorBW: ''
     }
   },
@@ -85,6 +85,6 @@ export default {
 </script>
 <style scoped>
 #panelbg {
-  background-color: #00637E
+  background-color: #264653
 }
 </style>

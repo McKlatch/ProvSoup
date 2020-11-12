@@ -1,6 +1,6 @@
 <template>
   <div class="flex text-center pointer-events-auto">
-    <p class="flex-1 font-body text-xs m-auto pt-2 px-2">Proverbs curated by&nbsp;<a rel="noopener noreferrer" :href="link" target="_blank" aria-disabled="false" class="" title="David McClatchey">@McKlatch</a></p>
+    <p class="flex-1 font-body text-xs m-auto md:mt-2 p-2 md:rounded-r-lg">Proverbs curated by&nbsp;<a rel="noopener noreferrer" :href="link" target="_blank" aria-disabled="false" class="" title="David McClatchey">@McKlatch</a></p>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
 <style scoped>
 p {
   color: #EB8970;
-  filter: drop-shadow(.05em .05em #00637E)
+  background-color: #264653;
 }
 a {
   color: #EB8970
